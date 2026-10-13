@@ -1,4 +1,5 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html>
+<html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head><body>
 <title>Good Food, Good Life</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -209,6 +210,21 @@ button:focus-visible{outline:3px solid var(--sky);outline-offset:2px}
 .result h3{margin:0;font-family:var(--f-display);font-size:48px;font-weight:700}
 .result p{margin:0;color:#b9d3db;font-size:20px}
 
+/* images (white photo backgrounds blend into any card colour) */
+.pic{display:inline-flex;align-items:center;justify-content:center;line-height:1;font-size:40px;flex:none}
+.pic img{display:block;width:100%;height:100%;object-fit:contain;mix-blend-mode:multiply;user-select:none}
+.pic .fb{display:none}
+.pic.noimg .fb{display:block}
+.fcard .pic{width:68px;height:68px;font-size:40px}
+.dcard .pic{width:112px;height:112px;font-size:76px}
+.panel .pic.big{width:180px;height:180px;font-size:100px}
+.pbtn .pic{width:132px;height:132px;font-size:68px}
+.t3 .pic{width:132px;height:132px;font-size:70px}
+.pic.scene{position:relative;width:100%;height:auto;aspect-ratio:3/2;border-radius:12px;overflow:hidden;font-size:64px;background:var(--soft)}
+.pic.scene img{position:absolute;inset:0;mix-blend-mode:normal;object-fit:cover}
+.scene p{font-size:16px}
+.qcard .pic.qp{width:230px;height:230px;font-size:110px}
+
 /* modal */
 .ovl{position:absolute;inset:0;background:rgba(15,47,58,.72);display:grid;place-items:center;z-index:10}
 .ovl[hidden]{display:none}
@@ -254,6 +270,12 @@ var $$=function(s,r){return Array.prototype.slice.call((r||document).querySelect
 function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t}return a}
 function say(t){try{if(!window.speechSynthesis)return;speechSynthesis.cancel();var u=new SpeechSynthesisUtterance(t);u.lang="en-US";u.rate=.85;speechSynthesis.speak(u)}catch(e){}}
 
+/* ---------- images ---------- */
+function pic(file,emoji,cls){return '<span class="pic '+(cls||'')+'"><img src="assets/images/'+file+'.webp" alt="" draggable="false"><span class="fb">'+emoji+'</span></span>'}
+document.addEventListener("error",function(e){var t=e.target;if(t&&t.tagName==="IMG"&&t.parentNode&&t.parentNode.classList&&t.parentNode.classList.contains("pic")){t.parentNode.classList.add("noimg");t.parentNode.removeChild(t)}},true);
+var FOOD_FILES=["food-01-sandwich","food-02-hamburger","food-03-fish-and-chips","food-04-pizza","food-05-salad","food-06-fried-rice","food-07-steak","food-08-hotdog","food-09-soup","food-10-porridge","food-11-noodle","food-12-french-fries","food-13-roasted-chicken","food-14-satay","food-15-sushi","food-16-kebab","food-17-white-bread","food-18-bun","food-19-croissant","food-20-baguette"];
+var DRINK_FILES=["drink-milk","drink-water","drink-tea","drink-coffee","drink-juice"];
+
 /* ---------- data ---------- */
 var FOODS=[
 ["Sandwich","🥪","sandwich"],["Hamburger","🍔","hamburger"],["Fish and chips","🐟🍟","ikan dan kentang goreng"],["Pizza","🍕","pizza"],
@@ -277,13 +299,13 @@ var FILL=[
  ["🍤","The fried tofu with seasoning is","savory"]];
 var FILLBANK=["spicy","sweet","sour","bitter","salty","savory"];
 var T3=[
- ["🍬","sugar",["sweet"]],["🥚","egg",["savory","plain","tasty"]],["💧","water",["plain"]],["🍭","candies",["sweet"]],["🌶️","chili sauce",["spicy"]]];
+ ["🍬","sugar",["sweet"],"a3-sugar"],["🥚","egg",["savory","plain","tasty"],"a3-egg"],["💧","water",["plain"],"a3-water-bottles"],["🍭","candies",["sweet"],"a3-candies"],["🌶️","chili sauce",["spicy"],"a3-chili-sauce"]];
 var T3OPT=["sweet","sour","spicy","salty","bitter","plain"];
 var SCENES=[
- ["🏠","At Johan's house","Tom is an exchange student from Germany. He stays at Johan's home. One day he sees a strange fruit covered in thorns and asks what it is."],
- ["🍈","The famous fruit","Johan is proud of the fruit and calls it the best in the world. Tom disagrees because the smell is terrible to him, but Johan thinks it smells wonderful."],
- ["😋","Time to try","Johan says the fruit is yummy and invites Tom to try a piece. Tom agrees and tastes it while Johan watches."],
- ["🤔","Tom's opinion","Tom finds the taste slightly bitter and the texture creamy. He calls it strange and says no to more, so Johan keeps the durian for himself."]];
+ ["🏠","At Johan's house","Tom is an exchange student from Germany. He stays at Johan's home. One day he sees a strange fruit covered in thorns and asks what it is.","act4-scene1-spiky-fruit"],
+ ["🍈","The famous fruit","Johan is proud of the fruit and calls it the best in the world. Tom disagrees because the smell is terrible to him, but Johan thinks it smells wonderful.","act4-scene2-bad-smell"],
+ ["😋","Time to try","Johan says the fruit is yummy and invites Tom to try a piece. Tom agrees and tastes it while Johan watches.","act4-scene3-try-it"],
+ ["🤔","Tom's opinion","Tom finds the taste slightly bitter and the texture creamy. He calls it strange and says no to more, so Johan keeps the durian for himself.","act4-scene4-strange-taste"]];
 var STORYQ=[
  ["Where is Tom from?",["Germany","Indonesia","Japan"],0],
  ["What is the fruit?",["Mango","Durian","Banana"],1],
@@ -306,12 +328,12 @@ S.push({title:"Beranda",render:function(){
 /* 1 food */
 S.push({title:"Types of Food",render:function(){
   return head("Materi","m","A. Types of Food","Klik kartu untuk melihat nama makanan dan mendengar pengucapannya.")+
-  '<div class="split food"><div class="fgrid">'+FOODS.map(function(f,i){return '<button class="fcard" type="button" data-i="'+i+'"><span class="em">'+f[1]+'</span><b>'+f[0]+'</b></button>'}).join("")+'</div><aside class="panel" id="fp"></aside></div>'},
+  '<div class="split food"><div class="fgrid">'+FOODS.map(function(f,i){return '<button class="fcard" type="button" data-i="'+i+'">'+pic(FOOD_FILES[i],f[1])+'<b>'+f[0]+'</b></button>'}).join("")+'</div><aside class="panel" id="fp"></aside></div>'},
   init:function(){
     var seen={};
     function show(i){var f=FOODS[i];seen[i]=1;
       $$(".fcard").forEach(function(c,k){c.classList.toggle("on",k===i);c.classList.toggle("seen",!!seen[k])});
-      $("#fp").innerHTML='<div class="big">'+f[1]+'</div><h3>'+f[0]+'</h3><div class="id">'+f[2]+'</div><div class="line">This is '+f[0].toLowerCase()+'.</div><button class="say" type="button" id="sp">Dengarkan</button><div class="id">Dilihat: '+Object.keys(seen).length+' / 20</div>';
+      $("#fp").innerHTML=pic(FOOD_FILES[i],f[1],"big")+'<h3>'+f[0]+'</h3><div class="id">'+f[2]+'</div><div class="line">This is '+f[0].toLowerCase()+'.</div><button class="say" type="button" id="sp">Dengarkan</button><div class="id">Dilihat: '+Object.keys(seen).length+' / 20</div>';
       $("#sp").onclick=function(){say(f[0])};say(f[0])}
     $$(".fcard").forEach(function(c){c.onclick=function(){show(+c.dataset.i)}});
     $("#fp").innerHTML='<div class="big">🍽️</div><h3>Pilih makanan</h3><div class="id">Klik salah satu kartu di kiri.</div>'}});
@@ -319,7 +341,7 @@ S.push({title:"Types of Food",render:function(){
 /* 2 drink */
 S.push({title:"Types of Beverages",render:function(){
   return head("Materi","m","B. Types of Beverages","Klik minuman, lalu dengarkan contoh kalimatnya.")+
-  '<div class="split drinks"><div class="drow">'+DRINKS.map(function(d,i){return '<button class="dcard" type="button" data-i="'+i+'"><span class="em">'+d[1]+'</span><b>'+d[0]+'</b><small>'+d[2]+'</small></button>'}).join("")+'</div><aside class="panel" id="dp"></aside></div>'},
+  '<div class="split drinks"><div class="drow">'+DRINKS.map(function(d,i){return '<button class="dcard" type="button" data-i="'+i+'">'+pic(DRINK_FILES[i],d[1])+'<b>'+d[0]+'</b><small>'+d[2]+'</small></button>'}).join("")+'</div><aside class="panel" id="dp"></aside></div>'},
   init:function(){
     function show(i){var d=DRINKS[i],n=d[0].toLowerCase();
       $$(".dcard").forEach(function(c,k){c.classList.toggle("on",k===i)});
@@ -368,7 +390,7 @@ S.push({title:"Activity 1",render:function(){
     var sel=-1,done={},n=0,mist=0,order=shuffle(MATCH.map(function(_,i){return i}));
     function draw(){
       $("#wd").innerHTML=MATCH.map(function(m,i){return '<button class="wbtn'+(done[i]?' ok':'')+(sel===i?' sel':'')+'" type="button" data-i="'+i+'">'+m[0]+'</button>'}).join("");
-      $("#pg").innerHTML=order.map(function(i){return '<button class="pbtn'+(done[i]?' ok':'')+'" type="button" data-i="'+i+'"><span>'+MATCH[i][1]+'</span>'+(done[i]?'<small>'+MATCH[i][0]+'</small>':'')+'</button>'}).join("");
+      $("#pg").innerHTML=order.map(function(i){return '<button class="pbtn'+(done[i]?' ok':'')+'" type="button" data-i="'+i+'">'+pic("a1-"+MATCH[i][0],MATCH[i][1])+(done[i]?'<small>'+MATCH[i][0]+'</small>':'')+'</button>'}).join("");
       $("#sc").textContent="Benar "+n+" / "+MATCH.length+" · Salah "+mist;
       $$(".wbtn").forEach(function(b){b.onclick=function(){var i=+b.dataset.i;if(done[i])return;sel=i;$("#ms").textContent="";$("#ms").className="msg";say(MATCH[i][0]);draw()}});
       $$(".pbtn").forEach(function(b){b.onclick=function(){var i=+b.dataset.i;if(done[i])return;
@@ -407,7 +429,7 @@ S.push({title:"Activity 3",render:function(){
     function reset(){ok=T3.map(function(){return false});opts=T3.map(function(){return shuffle(T3OPT).slice(0,0)});draw();$("#ms").textContent=""}
     var pool=T3.map(function(t){var o=t[2].slice(0,1);var rest=shuffle(T3OPT.filter(function(w){return t[2].indexOf(w)<0})).slice(0,3);return shuffle(o.concat(rest))});
     function draw(){
-      $("#c3").innerHTML=T3.map(function(t,i){return '<div class="t3'+(ok[i]?' done':'')+'"><span class="em">'+t[0]+'</span><b>'+t[1]+'</b><div class="opts">'+pool[i].map(function(w){return '<button class="opt'+(ok[i]&&t[2].indexOf(w)>-1?' ok':'')+'" type="button" data-i="'+i+'" data-w="'+w+'">'+w+'</button>'}).join("")+'</div></div>'}).join("");
+      $("#c3").innerHTML=T3.map(function(t,i){return '<div class="t3'+(ok[i]?' done':'')+'">'+pic(t[3],t[0])+'<b>'+t[1]+'</b><div class="opts">'+pool[i].map(function(w){return '<button class="opt'+(ok[i]&&t[2].indexOf(w)>-1?' ok':'')+'" type="button" data-i="'+i+'" data-w="'+w+'">'+w+'</button>'}).join("")+'</div></div>'}).join("");
       var n=ok.filter(function(x){return x}).length;$("#sc").textContent="Benar "+n+" / "+T3.length;
       $$(".opt").forEach(function(b){b.onclick=function(){var i=+b.dataset.i;if(ok[i])return;
         if(T3[i][2].indexOf(b.dataset.w)>-1){ok[i]=true;draw();var m=ok.filter(function(x){return x}).length;if(m===T3.length){$("#ms").textContent="Hebat! Semua jawaban benar.";$("#ms").className="msg good"}}
@@ -424,7 +446,7 @@ S.push({title:"Activity 4",render:function(){
     function draw(){
       $$(".tabb").forEach(function(b){b.classList.toggle("on",+b.dataset.t===tab)});
       var n=ans.filter(function(a,i){return a===STORYQ[i][2]}).length;$("#sc").textContent=tab?("Benar "+n+" / "+STORYQ.length):"";
-      if(!tab){$("#tb").innerHTML='<div class="scenes">'+SCENES.map(function(s){return '<div class="scene"><span class="em">'+s[0]+'</span><h5>'+s[1]+'</h5><p>'+s[2]+'</p></div>'}).join("")+'</div>'}
+      if(!tab){$("#tb").innerHTML='<div class="scenes">'+SCENES.map(function(s){return '<div class="scene">'+pic(s[3],s[0],"scene")+'<h5>'+s[1]+'</h5><p>'+s[2]+'</p></div>'}).join("")+'</div>'}
       else{$("#tb").innerHTML='<div class="qa">'+STORYQ.map(function(q,i){return '<div class="qbox"><p>'+(i+1)+'. '+q[0]+'</p><div class="opts">'+q[1].map(function(o,k){var c="opt";if(ans[i]===k)c+=k===q[2]?" ok":" bad";return '<button class="'+c+'" type="button" data-i="'+i+'" data-k="'+k+'">'+o+'</button>'}).join("")+'</div></div>'}).join("")+'</div>';
         $$(".opt").forEach(function(b){b.onclick=function(){var i=+b.dataset.i;if(ans[i]===STORYQ[i][2])return;ans[i]=+b.dataset.k;draw()}})}}
     $$(".tabb").forEach(function(b){b.onclick=function(){tab=+b.dataset.t;draw()}});
@@ -433,8 +455,8 @@ S.push({title:"Activity 4",render:function(){
 /* 10 quiz */
 var QPOOL_FOOD=FOODS.map(function(f){return f[0]}),QPOOL_DR=DRINKS.map(function(d){return d[0]}),QPOOL_TA=TASTES.map(function(t){return t[0]}),QPOOL_TX=TEXTURES.map(function(t){return t[0]});
 var QBANK=[
- ["🍕","What food is this?","Pizza",QPOOL_FOOD],["🍜","What food is this?","Noodle",QPOOL_FOOD],["🍢","What food is this?","Satay",QPOOL_FOOD],["🥐","What food is this?","Croissant",QPOOL_FOOD],
- ["🍵","What drink is this?","Tea",QPOOL_DR.concat(["Soda"])],["🧃","What drink is this?","Juice",QPOOL_DR.concat(["Soda"])],
+ ["🍕","What food is this?","Pizza",QPOOL_FOOD,"food-04-pizza"],["🍜","What food is this?","Noodle",QPOOL_FOOD,"food-11-noodle"],["🍢","What food is this?","Satay",QPOOL_FOOD,"food-14-satay"],["🥐","What food is this?","Croissant",QPOOL_FOOD,"food-19-croissant"],
+ ["🍵","What drink is this?","Tea",QPOOL_DR.concat(["Soda"]),"drink-tea"],["🧃","What drink is this?","Juice",QPOOL_DR.concat(["Soda"]),"drink-juice"],
  ["🍋","The lemon is very ___.","sour",QPOOL_TA],["🍬","The candy is very ___.","sweet",QPOOL_TA],
  ["🧊","The ice cube is ___.","cold",QPOOL_TX],
  ["🎤","How do you ask about someone's favorite food?","What is your favorite food?",["How does it taste?","What does it feel like?","Do you like water?"]]];
@@ -450,7 +472,7 @@ S.push({title:"Kuis Akhir",render:function(){
         $("#sc").textContent="Selesai";$("#again").onclick=start;return}
       var q=qs[i],o=shuffle([q[2]].concat(shuffle(q[3].filter(function(x){return x!==q[2]})).slice(0,3)));
       $("#sc").textContent="Soal "+(i+1)+" / "+qs.length+" · Skor "+score;
-      $("#qz").innerHTML='<div class="qcard"><div class="em">'+q[0]+'</div><div class="qt">'+q[1]+'</div><div class="bar" style="width:100%"><i style="width:'+(i/qs.length*100)+'%"></i></div></div><div class="qside">'+o.map(function(x){return '<button class="opt" type="button" data-v="'+x.replace(/"/g,"&quot;")+'">'+x+'</button>'}).join("")+'</div>';
+      $("#qz").innerHTML='<div class="qcard">'+(q[4]?pic(q[4],q[0],"qp"):'<div class="em">'+q[0]+'</div>')+'<div class="qt">'+q[1]+'</div><div class="bar" style="width:100%"><i style="width:'+(i/qs.length*100)+'%"></i></div></div><div class="qside">'+o.map(function(x){return '<button class="opt" type="button" data-v="'+x.replace(/"/g,"&quot;")+'">'+x+'</button>'}).join("")+'</div>';
       locked=false;
       $$(".qside .opt").forEach(function(b){b.onclick=function(){if(locked)return;locked=true;
         var good=b.dataset.v===q[2];if(good){score++;b.classList.add("ok")}else{b.classList.add("bad");$$(".qside .opt").forEach(function(x){if(x.dataset.v===q[2])x.classList.add("ok")})}
