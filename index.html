@@ -1,0 +1,491 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Good Food, Good Life</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Figtree:wght@400;500;600;700&display=swap">
+<style>
+/* Layout concept: fixed 1280x720 (16:9) stage scaled to fit any screen; ink top bar, paper work area, bottom navigation. Single committed look for classroom projection. */
+:root{
+  --ink:#0f2f3a; --ink2:#1d4a59; --paper:#f2f8f6; --card:#ffffff;
+  --mango:#ffb41f; --mango-ink:#4a3000; --chili:#d93f45; --leaf:#1f8f5c; --sky:#2878bd;
+  --line:#d3e3de; --muted:#4f6b75; --ok-bg:#dcf3e6; --bad-bg:#fde2e2; --soft:#e6f0ed;
+  --f-display:'Fredoka','Trebuchet MS',system-ui,sans-serif;
+  --f-body:'Figtree',system-ui,-apple-system,'Segoe UI',sans-serif;
+  color-scheme:light;
+}
+html,body{height:100%}
+body{margin:0;background:var(--ink);color:var(--ink);font-family:var(--f-body);overflow:hidden}
+*{box-sizing:border-box}
+button{font-family:inherit;color:inherit;cursor:pointer}
+button:focus-visible{outline:3px solid var(--sky);outline-offset:2px}
+#stage{position:absolute;left:0;top:0;width:1280px;height:720px;background:var(--paper);transform-origin:0 0;overflow:hidden;display:flex;flex-direction:column}
+
+/* top bar */
+.top{height:64px;flex:none;background:var(--ink);color:#fff;display:flex;align-items:center;gap:12px;padding:0 24px}
+.brand{display:flex;align-items:center;gap:12px;font-family:var(--f-display);font-weight:600;font-size:21px;letter-spacing:.2px}
+.mark{width:36px;height:36px;border-radius:50%;background:var(--mango);color:var(--mango-ink);display:grid;place-items:center;font-size:15px;font-weight:700}
+.top .sub{font-family:var(--f-body);font-weight:500;font-size:14px;color:#a9c6cf;margin-left:6px;padding-left:14px;border-left:1px solid #3b6372}
+.sp{flex:1}
+.tb{border:1px solid #3b6372;background:transparent;color:#fff;border-radius:10px;padding:0 16px;height:40px;font-weight:600;font-size:15px}
+.tb:hover{background:var(--ink2)}
+.tb.dev{background:var(--mango);border-color:var(--mango);color:var(--mango-ink);font-weight:700}
+.tb.dev:hover{background:#ffc547}
+
+/* view */
+#view{flex:1;min-height:0;padding:20px 36px 14px;display:flex;flex-direction:column;gap:14px}
+.head .row{display:flex;align-items:center;gap:14px}
+.head h2{margin:0;font-family:var(--f-display);font-size:32px;font-weight:600;line-height:1.1}
+.head p{margin:6px 0 0;color:var(--muted);font-size:16px}
+.tag{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:5px 10px;border-radius:6px}
+.tag.m{background:var(--sky);color:#fff}
+.tag.l{background:var(--leaf);color:#fff}
+.tag.q{background:var(--chili);color:#fff}
+.split{flex:1;min-height:0;display:grid;gap:18px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:8px;min-height:0}
+.panel .big{font-size:112px;line-height:1.05}
+.panel h3{margin:0;font-family:var(--f-display);font-size:38px;font-weight:600}
+.panel .id{color:var(--muted);font-size:18px}
+.panel .say{margin-top:6px;background:var(--ink);color:#fff;border:0;border-radius:12px;height:46px;padding:0 22px;font-weight:700;font-size:16px}
+.panel .say:hover{background:var(--ink2)}
+.panel .line{font-size:20px;font-weight:600;color:var(--ink2)}
+
+/* buttons */
+.btn{border:0;border-radius:12px;min-height:46px;padding:0 22px;font-weight:700;font-size:16px;background:var(--ink);color:#fff}
+.btn:hover{background:var(--ink2)}
+.btn.alt{background:var(--soft);color:var(--ink)}
+.btn.alt:hover{background:#d5e6e1}
+.btn.go{background:var(--mango);color:var(--mango-ink)}
+.btn.go:hover{background:#ffc547}
+.btn:disabled{opacity:.45;cursor:default}
+
+/* nav */
+.nav{height:64px;flex:none;border-top:1px solid var(--line);background:var(--card);display:flex;align-items:center;gap:16px;padding:0 36px}
+.nav .btn{min-width:150px}
+.dots{flex:1;display:flex;justify-content:center;gap:9px}
+.dot{width:12px;height:12px;border-radius:50%;border:0;padding:0;background:#c3d6d0}
+.dot.on{background:var(--ink);width:34px;border-radius:7px}
+.dot.done{background:var(--leaf)}
+.ttl{min-width:0;font-size:14px;color:var(--muted);font-weight:600;text-align:center;position:absolute;left:0;right:0;bottom:2px;pointer-events:none}
+
+/* home */
+.home{flex:1;min-height:0;display:grid;grid-template-columns:430px 1fr;gap:26px}
+.hero{background:var(--ink);color:#fff;border-radius:22px;padding:30px 32px;display:flex;flex-direction:column;gap:10px;position:relative;overflow:hidden}
+.hero .eyebrow{margin:0;color:var(--mango);font-weight:700;font-size:14px;letter-spacing:.14em;text-transform:uppercase}
+.hero h1{margin:0;font-family:var(--f-display);font-weight:700;font-size:54px;line-height:1.02}
+.hero .lead{margin:0;color:#b9d3db;font-size:17px}
+.hero h3{margin:14px 0 4px;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#a9c6cf}
+.hero ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:7px}
+.hero li{display:flex;gap:10px;align-items:flex-start;font-size:16px;line-height:1.3}
+.hero li:before{content:"";flex:none;width:9px;height:9px;border-radius:50%;background:var(--mango);margin-top:6px}
+.hero .btn{margin-top:auto;align-self:flex-start;min-height:52px;font-size:18px;padding:0 30px}
+.plate{position:absolute;right:-70px;bottom:-70px;width:230px;height:230px;border-radius:50%;background:var(--ink2);display:grid;place-items:center;font-size:84px;opacity:.9}
+.tiles{display:grid;grid-template-columns:repeat(5,1fr);grid-template-rows:repeat(2,1fr);gap:14px}
+.tile{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px 14px;display:flex;flex-direction:column;align-items:flex-start;gap:6px;text-align:left;transition:transform .15s,border-color .15s}
+.tile:hover{transform:translateY(-3px);border-color:var(--ink2)}
+.tile .em{font-size:44px;line-height:1}
+.tile b{font-family:var(--f-display);font-weight:600;font-size:19px;line-height:1.15;margin-top:auto}
+.tile small{color:var(--muted);font-size:13px;line-height:1.3}
+.tile .tag{font-size:11px;padding:3px 8px}
+
+/* food */
+.food{grid-template-columns:1fr 330px}
+.fgrid{display:grid;grid-template-columns:repeat(5,1fr);grid-template-rows:repeat(4,1fr);gap:10px;min-height:0}
+.fcard{background:var(--card);border:2px solid var(--line);border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:4px;min-height:0}
+.fcard .em{font-size:40px;line-height:1.05}
+.fcard b{font-size:15px;font-weight:700}
+.fcard:hover{border-color:var(--ink2)}
+.fcard.on{border-color:var(--mango);background:#fff7e1}
+.fcard.seen:not(.on){background:#f1f8f5}
+
+/* drinks */
+.drinks{grid-template-rows:auto 1fr}
+.drow{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.dcard{background:var(--card);border:2px solid var(--line);border-radius:18px;padding:18px 8px;display:flex;flex-direction:column;align-items:center;gap:6px}
+.dcard .em{font-size:76px;line-height:1.05}
+.dcard b{font-family:var(--f-display);font-size:26px;font-weight:600}
+.dcard small{color:var(--muted);font-size:15px}
+.dcard.on{border-color:var(--mango);background:#fff7e1}
+.dcard:hover{border-color:var(--ink2)}
+
+/* builder (taste/texture) */
+.build{grid-template-columns:1fr 1fr}
+.col{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px;display:flex;flex-direction:column;gap:14px;min-height:0}
+.col h4{margin:0;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.chips{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.chips.three{grid-template-columns:repeat(3,1fr)}
+.chip{background:var(--soft);border:2px solid transparent;border-radius:14px;padding:10px 4px;display:flex;flex-direction:column;align-items:center;gap:2px;font-weight:700;font-size:17px}
+.chip .em{font-size:32px;line-height:1.1}
+.chip small{font-weight:500;color:var(--muted);font-size:13px}
+.chip:hover{border-color:var(--ink2)}
+.chip.on{background:#fff7e1;border-color:var(--mango)}
+.bubbles{flex:1;display:flex;flex-direction:column;justify-content:center;gap:16px;min-height:0}
+.bub{display:flex;align-items:center;gap:14px}
+.bub.r{flex-direction:row-reverse}
+.who{flex:none;width:46px;height:46px;border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:18px;color:#fff}
+.who.a{background:var(--sky)}
+.who.b{background:var(--leaf)}
+.say-b{background:var(--soft);border-radius:18px;padding:14px 20px;font-size:24px;font-weight:600;line-height:1.25}
+.bub.r .say-b{background:#fff1cc}
+.say-b em{font-style:normal;color:var(--chili);border-bottom:3px solid var(--mango)}
+.hint2{margin:0;color:var(--muted);font-size:15px}
+
+/* ask */
+.ask{grid-template-columns:1fr 1fr 1fr}
+.qline{background:var(--soft);border-radius:12px;padding:12px 14px;font-size:18px;font-weight:600}
+.qline.r{background:#fff1cc}
+.qline.p{background:#e7f1fb}
+.list{display:flex;flex-direction:column;gap:10px}
+.rnd{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:14px}
+.rnd .qq{font-family:var(--f-display);font-size:30px;font-weight:600;line-height:1.2}
+.rnd .em{font-size:60px}
+
+/* activities */
+.score{margin-left:auto;font-weight:700;font-size:16px;background:var(--soft);padding:8px 14px;border-radius:10px}
+.act1{grid-template-columns:260px 1fr}
+.words{display:grid;grid-template-columns:1fr 1fr;gap:10px;align-content:start}
+.wbtn{background:var(--card);border:2px solid var(--line);border-radius:12px;min-height:58px;font-size:20px;font-weight:700}
+.wbtn:hover{border-color:var(--ink2)}
+.wbtn.sel{border-color:var(--mango);background:#fff7e1}
+.wbtn.ok,.pbtn.ok{background:var(--ok-bg);border-color:var(--leaf);cursor:default}
+.pgrid{display:grid;grid-template-columns:repeat(5,1fr);grid-template-rows:repeat(2,1fr);gap:12px;min-height:0}
+.pbtn{background:var(--card);border:2px solid var(--line);border-radius:16px;font-size:68px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:2px}
+.pbtn small{font-size:15px;font-weight:700;color:var(--leaf)}
+.pbtn:hover{border-color:var(--ink2)}
+.shake{animation:shake .35s}
+@keyframes shake{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.msg{min-height:26px;font-weight:700;font-size:17px}
+.msg.good{color:var(--leaf)} .msg.bad{color:var(--chili)}
+.bank{display:flex;gap:10px;flex-wrap:wrap}
+.bk{background:var(--ink);color:#fff;border:0;border-radius:12px;min-height:46px;padding:0 22px;font-size:19px;font-weight:700}
+.bk:disabled{background:#c3d6d0;color:#6a858e;cursor:default}
+.sent{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.s2{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;display:flex;align-items:center;gap:12px;font-size:20px;line-height:1.35}
+.s2 .em{font-size:40px}
+.blank{min-width:120px;height:42px;border-radius:10px;border:2px dashed #8da9b2;background:var(--soft);font-weight:700;font-size:19px;padding:0 10px;vertical-align:middle}
+.blank.focus{border-color:var(--mango);border-style:solid;background:#fff7e1}
+.blank.filled{border-style:solid;border-color:var(--ink2);background:#fff}
+.blank.ok{background:var(--ok-bg);border-color:var(--leaf)}
+.blank.bad{background:var(--bad-bg);border-color:var(--chili)}
+.ctl{display:flex;gap:12px;align-items:center}
+.cards3{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;flex:1;min-height:0}
+.t3{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 10px;display:flex;flex-direction:column;align-items:center;gap:8px}
+.t3 .em{font-size:70px;line-height:1.05}
+.t3 b{font-family:var(--f-display);font-size:21px;font-weight:600}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:7px;width:100%;margin-top:auto}
+.opt{background:var(--soft);border:2px solid transparent;border-radius:10px;min-height:38px;font-weight:700;font-size:15px}
+.opt:hover{border-color:var(--ink2)}
+.opt.ok{background:var(--ok-bg);border-color:var(--leaf)}
+.opt.bad{background:var(--bad-bg);border-color:var(--chili)}
+.t3.done{border-color:var(--leaf);background:#f4fbf7}
+
+/* story */
+.tabs{display:flex;gap:8px}
+.tabb{border:0;background:var(--soft);border-radius:10px;height:42px;padding:0 20px;font-weight:700;font-size:16px}
+.tabb.on{background:var(--ink);color:#fff}
+.scenes{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;flex:1;min-height:0}
+.scene{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;display:flex;flex-direction:column;gap:10px}
+.scene .em{font-size:64px;line-height:1.1}
+.scene h5{margin:0;font-family:var(--f-display);font-weight:600;font-size:21px}
+.scene p{margin:0;font-size:17px;line-height:1.45;color:#27444e}
+.qa{display:grid;grid-template-columns:1fr 1fr;gap:14px;flex:1;min-height:0}
+.qbox{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:10px}
+.qbox p{margin:0;font-size:18px;font-weight:700}
+.qbox .opts{grid-template-columns:1fr;margin-top:0}
+.qbox .opt{text-align:left;padding:0 14px;min-height:40px;font-size:16px}
+
+/* final quiz */
+.quiz{flex:1;min-height:0;display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.qcard{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:24px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;text-align:center}
+.qcard .em{font-size:110px;line-height:1.05}
+.qcard .qt{font-family:var(--f-display);font-size:30px;font-weight:600;line-height:1.2}
+.qside{display:flex;flex-direction:column;gap:12px;justify-content:center}
+.qside .opt{min-height:62px;font-size:21px;text-align:left;padding:0 20px;border-radius:14px;background:var(--card);border:2px solid var(--line)}
+.qside .opt.ok{background:var(--ok-bg);border-color:var(--leaf)}
+.qside .opt.bad{background:var(--bad-bg);border-color:var(--chili)}
+.bar{height:10px;border-radius:6px;background:var(--soft);overflow:hidden}
+.bar i{display:block;height:100%;background:var(--leaf);transition:width .3s}
+.result{grid-column:1/-1;background:var(--ink);color:#fff;border-radius:22px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center}
+.result .stars{font-size:64px;letter-spacing:6px;color:var(--mango)}
+.result h3{margin:0;font-family:var(--f-display);font-size:48px;font-weight:700}
+.result p{margin:0;color:#b9d3db;font-size:20px}
+
+/* modal */
+.ovl{position:absolute;inset:0;background:rgba(15,47,58,.72);display:grid;place-items:center;z-index:10}
+.ovl[hidden]{display:none}
+.modal{width:520px;background:var(--card);border-radius:22px;padding:34px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:8px}
+.modal .mark{width:72px;height:72px;font-size:28px;margin-bottom:6px}
+.modal .k{margin:0;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.modal h3{margin:0;font-family:var(--f-display);font-size:38px;font-weight:700}
+.modal .role{margin:0;font-size:20px;font-weight:600;color:var(--ink2)}
+.modal .note{margin:10px 0 14px;color:var(--muted);font-size:15px;line-height:1.5}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+
+<div id="stage">
+  <header class="top">
+    <div class="brand"><span class="mark">GF</span>Good Food, Good Life!<span class="sub">English · Grade VII · Chapter 2</span></div>
+    <span class="sp"></span>
+    <button class="tb" id="bHome" type="button">Beranda</button>
+    <button class="tb" id="bFs" type="button">Layar penuh</button>
+    <button class="tb dev" id="bDev" type="button">Pengembang</button>
+  </header>
+  <main id="view"></main>
+  <footer class="nav" style="position:relative">
+    <button class="btn alt" id="bPrev" type="button">Sebelumnya</button>
+    <div class="dots" id="dots"></div>
+    <button class="btn" id="bNext" type="button">Selanjutnya</button>
+  </footer>
+  <div class="ovl" id="ovl" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="devName">
+      <span class="mark">JM</span>
+      <p class="k">Dikembangkan oleh</p>
+      <h3 id="devName">Jamaluddin</h3>
+      <p class="role">Guru UPTD SMPN 2 Robatal</p>
+      <p class="note">Media pembelajaran interaktif Bahasa Inggris kelas VII, Chapter 2 "Good Food, Good Life!", Lesson 1 "My Favorite Food".</p>
+      <button class="btn" id="bClose" type="button">Tutup</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+var $=function(s,r){return (r||document).querySelector(s)};
+var $$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t}return a}
+function say(t){try{if(!window.speechSynthesis)return;speechSynthesis.cancel();var u=new SpeechSynthesisUtterance(t);u.lang="en-US";u.rate=.85;speechSynthesis.speak(u)}catch(e){}}
+
+/* ---------- data ---------- */
+var FOODS=[
+["Sandwich","🥪","sandwich"],["Hamburger","🍔","hamburger"],["Fish and chips","🐟🍟","ikan dan kentang goreng"],["Pizza","🍕","pizza"],
+["Salad","🥗","salad sayur"],["Fried rice","🍚","nasi goreng"],["Steak","🥩","bistik daging"],["Hotdog","🌭","hotdog"],
+["Soup","🍲","sup"],["Porridge","🥣","bubur"],["Noodle","🍜","mi"],["French fries","🍟","kentang goreng"],
+["Roasted chicken","🍗","ayam panggang"],["Satay","🍢","sate"],["Sushi","🍣","sushi"],["Kebab","🌯","kebab"],
+["White bread","🍞","roti tawar"],["Bun","🥯","roti bun"],["Croissant","🥐","croissant"],["Baguette","🥖","baguette"]];
+var DRINKS=[["Milk","🥛","susu"],["Water","💧","air putih"],["Tea","🍵","teh"],["Coffee","☕","kopi"],["Juice","🧃","jus"]];
+var TASTES=[["sour","🍋","asam"],["spicy","🌶️","pedas"],["plain","💧","tawar / hambar"],["tasty","😋","enak"],["sweet","🍬","manis"],["salty","🧂","asin"],["bitter","☕","pahit"],["delicious","🤩","lezat"]];
+var TASTE_ITEMS=[["mango","🥭"],["lemon","🍋"],["candy","🍬"],["chili sauce","🌶️"],["black coffee","☕"],["potato chips","🥔"]];
+var TEXTURES=[["soft","☁️","lembut"],["chewy","🍡","kenyal"],["cold","🧊","dingin"],["greasy","🍟","berminyak"],["hard","🪨","keras"],["warm","♨️","hangat"],["smooth","🥛","halus"]];
+var TEX_ITEMS=[["donut","🍩"],["ice cream","🍦"],["toffee","🍬"],["bread","🍞"],["fried chicken","🍗"],["soup","🍲"]];
+var ASKQ=["What is your favorite food?","What is your favorite drink?","What food do you like for breakfast?","What food do you like for lunch?","What food do you like for dinner?","How does it taste?","What does it feel like?"];
+var MATCH=[["rice","🍚"],["water","💧"],["cake","🍰"],["chips","🍟"],["chicken","🍗"],["fish","🐟"],["meat","🥩"],["butter","🧈"],["bread","🍞"],["cheese","🧀"]];
+var FILL=[
+ ["🌶️","Dina puts a lot of chili sauce on her noodles. The noodles are","spicy"],
+ ["🍫","Chocolate candy has plenty of sugar, so it is","sweet"],
+ ["🥭","This unripe mango makes my face squeeze. It is","sour"],
+ ["☕","Black coffee without sugar is","bitter"],
+ ["🥔","Potato chips have a lot of salt, so they are","salty"],
+ ["🍤","The fried tofu with seasoning is","savory"]];
+var FILLBANK=["spicy","sweet","sour","bitter","salty","savory"];
+var T3=[
+ ["🍬","sugar",["sweet"]],["🥚","egg",["savory","plain","tasty"]],["💧","water",["plain"]],["🍭","candies",["sweet"]],["🌶️","chili sauce",["spicy"]]];
+var T3OPT=["sweet","sour","spicy","salty","bitter","plain"];
+var SCENES=[
+ ["🏠","At Johan's house","Tom is an exchange student from Germany. He stays at Johan's home. One day he sees a strange fruit covered in thorns and asks what it is."],
+ ["🍈","The famous fruit","Johan is proud of the fruit and calls it the best in the world. Tom disagrees because the smell is terrible to him, but Johan thinks it smells wonderful."],
+ ["😋","Time to try","Johan says the fruit is yummy and invites Tom to try a piece. Tom agrees and tastes it while Johan watches."],
+ ["🤔","Tom's opinion","Tom finds the taste slightly bitter and the texture creamy. He calls it strange and says no to more, so Johan keeps the durian for himself."]];
+var STORYQ=[
+ ["Where is Tom from?",["Germany","Indonesia","Japan"],0],
+ ["What is the fruit?",["Mango","Durian","Banana"],1],
+ ["What does Tom think about the smell?",["It smells good","It smells awful","It has no smell"],1],
+ ["How does Tom describe the taste?",["A bit bitter","Very sweet","Too spicy"],0]];
+
+/* ---------- screens ---------- */
+function head(tag,kind,title,hint){return '<div class="head"><div class="row"><span class="tag '+kind+'">'+tag+'</span><h2>'+title+'</h2></div><p>'+hint+'</p></div>'}
+var S=[];
+
+/* 0 home */
+S.push({title:"Beranda",render:function(){
+  var tiles=[["food","🍕","Types of Food","20 jenis makanan","Materi","m"],["drink","🧃","Types of Beverages","5 jenis minuman","Materi","m"],["taste","🍋","Asking About Taste","Rasa makanan","Materi","m"],["texture","🍩","Texture of Food","Tekstur makanan","Materi","m"],["ask","💬","Favorite Food","Tanya jawab favorit","Materi","m"],
+   ["act1","🧀","Activity 1","Jodohkan kata & gambar","Latihan","l"],["act2","🍬","Activity 2","Lengkapi kalimat rasa","Latihan","l"],["act3","🥚","Activity 3","Bagaimana rasanya?","Latihan","l"],["act4","🍈","Activity 4","Cerita Tom & Johan","Latihan","l"],["quiz","🏆","Kuis Akhir","10 soal campuran","Kuis","q"]];
+  return '<div class="home"><section class="hero"><p class="eyebrow">Chapter 2 · Lesson 1</p><h1>Good Food,<br>Good Life!</h1><p class="lead">My Favorite Food · English for SMP/MTs Kelas VII</p>'+
+  '<h3>Tujuan pembelajaran</h3><ul><li>Menyebutkan jenis makanan</li><li>Menyebutkan jenis minuman</li><li>Menggunakan kata penjumlah (quantifiers)</li><li>Mendeskripsikan makanan</li><li>Mengenali bahan makanan</li></ul>'+
+  '<button class="btn go" type="button" data-go="1">Mulai belajar</button><div class="plate">🍜</div></section>'+
+  '<section class="tiles">'+tiles.map(function(t,i){return '<button class="tile" type="button" data-go="'+(i+1)+'"><span class="tag '+t[5]+'">'+t[4]+'</span><span class="em">'+t[1]+'</span><b>'+t[2]+'</b><small>'+t[3]+'</small></button>'}).join("")+'</section></div>'}});
+
+/* 1 food */
+S.push({title:"Types of Food",render:function(){
+  return head("Materi","m","A. Types of Food","Klik kartu untuk melihat nama makanan dan mendengar pengucapannya.")+
+  '<div class="split food"><div class="fgrid">'+FOODS.map(function(f,i){return '<button class="fcard" type="button" data-i="'+i+'"><span class="em">'+f[1]+'</span><b>'+f[0]+'</b></button>'}).join("")+'</div><aside class="panel" id="fp"></aside></div>'},
+  init:function(){
+    var seen={};
+    function show(i){var f=FOODS[i];seen[i]=1;
+      $$(".fcard").forEach(function(c,k){c.classList.toggle("on",k===i);c.classList.toggle("seen",!!seen[k])});
+      $("#fp").innerHTML='<div class="big">'+f[1]+'</div><h3>'+f[0]+'</h3><div class="id">'+f[2]+'</div><div class="line">This is '+f[0].toLowerCase()+'.</div><button class="say" type="button" id="sp">Dengarkan</button><div class="id">Dilihat: '+Object.keys(seen).length+' / 20</div>';
+      $("#sp").onclick=function(){say(f[0])};say(f[0])}
+    $$(".fcard").forEach(function(c){c.onclick=function(){show(+c.dataset.i)}});
+    $("#fp").innerHTML='<div class="big">🍽️</div><h3>Pilih makanan</h3><div class="id">Klik salah satu kartu di kiri.</div>'}});
+
+/* 2 drink */
+S.push({title:"Types of Beverages",render:function(){
+  return head("Materi","m","B. Types of Beverages","Klik minuman, lalu dengarkan contoh kalimatnya.")+
+  '<div class="split drinks"><div class="drow">'+DRINKS.map(function(d,i){return '<button class="dcard" type="button" data-i="'+i+'"><span class="em">'+d[1]+'</span><b>'+d[0]+'</b><small>'+d[2]+'</small></button>'}).join("")+'</div><aside class="panel" id="dp"></aside></div>'},
+  init:function(){
+    function show(i){var d=DRINKS[i],n=d[0].toLowerCase();
+      $$(".dcard").forEach(function(c,k){c.classList.toggle("on",k===i)});
+      var s1='Do you like '+n+'?',s2='Yes, I do. I like '+n+'.';
+      $("#dp").innerHTML='<div class="line">A: '+s1+'</div><div class="line">B: '+s2+'</div><button class="say" type="button" id="sp">Dengarkan dialog</button>';
+      $("#sp").onclick=function(){say(s1+' '+s2)};say(d[0])}
+    $$(".dcard").forEach(function(c){c.onclick=function(){show(+c.dataset.i)}});
+    $("#dp").innerHTML='<div class="line">Pilih salah satu minuman di atas.</div>'}});
+
+/* builder factory for taste and texture */
+function builder(kind,items,words,qFn,aFn,title,hint,col1,col2,tagname){
+  return {title:title,render:function(){
+    return head("Materi","m",title,hint)+
+    '<div class="split build"><div class="col"><h4>'+col1+'</h4><div class="chips three" id="c1">'+items.map(function(x,i){return '<button class="chip" type="button" data-i="'+i+'"><span class="em">'+x[1]+'</span>'+x[0]+'</button>'}).join("")+'</div>'+
+    '<h4>'+col2+'</h4><div class="chips" id="c2">'+words.map(function(x,i){return '<button class="chip" type="button" data-i="'+i+'"><span class="em">'+x[1]+'</span>'+x[0]+'<small>'+x[2]+'</small></button>'}).join("")+'</div></div>'+
+    '<div class="col"><h4>Dialog</h4><div class="bubbles" id="bb"></div><div class="ctl"><button class="btn" type="button" id="sp">Dengarkan</button><p class="hint2">Pilih makanan dan kata sifat, dialog berubah otomatis.</p></div></div></div>'},
+  init:function(){
+    var a=0,b=0;
+    function upd(){
+      $$("#c1 .chip").forEach(function(c,k){c.classList.toggle("on",k===a)});
+      $$("#c2 .chip").forEach(function(c,k){c.classList.toggle("on",k===b)});
+      var q=qFn(items[a][0]),r=aFn(words[b][0]);
+      $("#bb").innerHTML='<div class="bub"><span class="who a">A</span><div class="say-b">'+q+'</div></div><div class="bub r"><span class="who b">B</span><div class="say-b">'+r+'</div></div>';
+      $("#sp").onclick=function(){say(q.replace(/<[^>]+>/g,"")+" "+r.replace(/<[^>]+>/g,""))}}
+    $$("#c1 .chip").forEach(function(c){c.onclick=function(){a=+c.dataset.i;upd()}});
+    $$("#c2 .chip").forEach(function(c){c.onclick=function(){b=+c.dataset.i;upd();say(words[b][0])}});
+    upd()}}}
+S.push(builder("taste",TASTE_ITEMS,TASTES,function(x){return 'How does the <em>'+x+'</em> taste?'},function(w){return "It's <em>"+w+"</em>."},"C. Asking About Taste","Gunakan pertanyaan “How does it taste?” untuk menanyakan rasa.","Makanan","Kata rasa","taste"));
+S.push(builder("texture",TEX_ITEMS,TEXTURES,function(x){return 'What does the <em>'+x+'</em> feel like?'},function(w){return "It's so <em>"+w+"</em>."},"D. Texture of Food","Gunakan pertanyaan “What does it feel like?” untuk menanyakan tekstur.","Makanan","Kata tekstur","texture"));
+
+/* 5 ask */
+S.push({title:"Favorite Food",render:function(){
+  return head("Materi","m","E. Asking About Favorite Food","Pelajari pertanyaan dan jawaban, lalu berlatih berpasangan dengan temanmu.")+
+  '<div class="split ask"><div class="col"><h4>Questions</h4><div class="list"><div class="qline">What is your favorite food?</div><div class="qline">What is your favorite drink?</div><div class="qline">What food do you like for breakfast / lunch / dinner?</div></div></div>'+
+  '<div class="col"><h4>Responses</h4><div class="list"><div class="qline r">I like fried rice. It\'s tasty.</div><div class="qline r">I like orange juice. It\'s fresh and sweet.</div><div class="qline r">I like salad. It\'s fresh and healthy.</div></div></div>'+
+  '<div class="col"><h4>Speaking practice</h4><div class="rnd"><div class="em">🎲</div><div class="qq" id="rq">Tekan tombol untuk mendapat pertanyaan.</div><button class="btn go" type="button" id="rb">Acak pertanyaan</button><button class="btn alt" type="button" id="rs">Dengarkan</button></div></div></div>'},
+  init:function(){var cur="";
+    $("#rb").onclick=function(){var q;do{q=ASKQ[Math.floor(Math.random()*ASKQ.length)]}while(q===cur);cur=q;$("#rq").textContent=q;say(q)};
+    $("#rs").onclick=function(){if(cur)say(cur)}}});
+
+/* 6 act1 */
+S.push({title:"Activity 1",render:function(){
+  return '<div class="head"><div class="row"><span class="tag l">Latihan</span><h2>Activity 1 · Match the words</h2><span class="score" id="sc"></span></div><p>Klik sebuah kata, lalu klik gambar makanan atau minuman yang sesuai.</p></div>'+
+  '<div class="split act1"><div class="words" id="wd"></div><div class="pgrid" id="pg"></div></div><div class="ctl"><div class="msg" id="ms"></div><span class="sp" style="flex:1"></span><button class="btn alt" type="button" id="rs">Ulangi</button></div>'},
+  init:function(){
+    var sel=-1,done={},n=0,mist=0,order=shuffle(MATCH.map(function(_,i){return i}));
+    function draw(){
+      $("#wd").innerHTML=MATCH.map(function(m,i){return '<button class="wbtn'+(done[i]?' ok':'')+(sel===i?' sel':'')+'" type="button" data-i="'+i+'">'+m[0]+'</button>'}).join("");
+      $("#pg").innerHTML=order.map(function(i){return '<button class="pbtn'+(done[i]?' ok':'')+'" type="button" data-i="'+i+'"><span>'+MATCH[i][1]+'</span>'+(done[i]?'<small>'+MATCH[i][0]+'</small>':'')+'</button>'}).join("");
+      $("#sc").textContent="Benar "+n+" / "+MATCH.length+" · Salah "+mist;
+      $$(".wbtn").forEach(function(b){b.onclick=function(){var i=+b.dataset.i;if(done[i])return;sel=i;$("#ms").textContent="";$("#ms").className="msg";say(MATCH[i][0]);draw()}});
+      $$(".pbtn").forEach(function(b){b.onclick=function(){var i=+b.dataset.i;if(done[i])return;
+        if(sel<0){$("#ms").textContent="Pilih kata dulu di sebelah kiri.";$("#ms").className="msg bad";return}
+        if(sel===i){done[i]=1;n++;sel=-1;$("#ms").textContent=n===MATCH.length?"Hebat! Semua pasangan sudah benar.":"Benar!";$("#ms").className="msg good";draw()}
+        else{mist++;$("#ms").textContent="Belum tepat, coba lagi.";$("#ms").className="msg bad";b.classList.add("shake");$("#sc").textContent="Benar "+n+" / "+MATCH.length+" · Salah "+mist}}});}
+    $("#rs").onclick=function(){sel=-1;done={};n=0;mist=0;order=shuffle(order);$("#ms").textContent="";draw()};
+    draw()}});
+
+/* 7 act2 */
+S.push({title:"Activity 2",render:function(){
+  return '<div class="head"><div class="row"><span class="tag l">Latihan</span><h2>Activity 2 · Complete the sentences</h2><span class="score" id="sc"></span></div><p>Klik kotak kosong, lalu pilih kata rasa yang tepat. Tekan Periksa jawaban bila sudah selesai.</p></div>'+
+  '<div class="bank" id="bank"></div><div class="sent" id="st"></div><div class="ctl"><button class="btn go" type="button" id="ck">Periksa jawaban</button><button class="btn alt" type="button" id="rs">Ulangi</button><div class="msg" id="ms"></div></div>'},
+  init:function(){
+    var fills,focus,checked;
+    function reset(){fills=FILL.map(function(){return null});focus=0;checked=false;$("#ms").textContent="";draw()}
+    function draw(){
+      $("#bank").innerHTML=FILLBANK.map(function(w){return '<button class="bk" type="button" data-w="'+w+'"'+(fills.indexOf(w)>-1?' disabled':'')+'>'+w+'</button>'}).join("");
+      $("#st").innerHTML=FILL.map(function(f,i){var cls="blank"+(fills[i]?" filled":"")+(focus===i&&!checked?" focus":"");
+        if(checked)cls+=fills[i]===f[2]?" ok":" bad";
+        return '<div class="s2"><span class="em">'+f[0]+'</span><span>'+f[1]+' <button class="'+cls+'" type="button" data-i="'+i+'">'+(fills[i]||"")+'</button>.</span></div>'}).join("");
+      $$(".bk").forEach(function(b){b.onclick=function(){if(checked)return;
+        var t=focus!==null&&fills[focus]===null?focus:fills.indexOf(null);if(t<0)return;
+        fills[t]=b.dataset.w;var nx=fills.indexOf(null);focus=nx<0?null:nx;draw()}});
+      $$(".blank").forEach(function(b){b.onclick=function(){if(checked)return;var i=+b.dataset.i;if(fills[i])fills[i]=null;focus=i;draw()}});
+      var c=fills.filter(function(x){return x}).length;$("#sc").textContent="Terisi "+c+" / "+FILL.length}
+    $("#ck").onclick=function(){var ok=0;fills.forEach(function(f,i){if(f===FILL[i][2])ok++});checked=true;draw();
+      $("#ms").textContent="Skor kamu "+ok+" dari "+FILL.length+(ok===FILL.length?". Sempurna!":". Tekan Ulangi untuk mencoba lagi.");$("#ms").className="msg "+(ok===FILL.length?"good":"bad")};
+    $("#rs").onclick=reset;reset()}});
+
+/* 8 act3 */
+S.push({title:"Activity 3",render:function(){
+  return '<div class="head"><div class="row"><span class="tag l">Latihan</span><h2>Activity 3 · How do these taste?</h2><span class="score" id="sc"></span></div><p>Pilih kata yang paling cocok untuk setiap gambar.</p></div><div class="cards3" id="c3"></div><div class="ctl"><div class="msg" id="ms"></div><span style="flex:1"></span><button class="btn alt" type="button" id="rs">Ulangi</button></div>'},
+  init:function(){
+    var ok,opts;
+    function reset(){ok=T3.map(function(){return false});opts=T3.map(function(){return shuffle(T3OPT).slice(0,0)});draw();$("#ms").textContent=""}
+    var pool=T3.map(function(t){var o=t[2].slice(0,1);var rest=shuffle(T3OPT.filter(function(w){return t[2].indexOf(w)<0})).slice(0,3);return shuffle(o.concat(rest))});
+    function draw(){
+      $("#c3").innerHTML=T3.map(function(t,i){return '<div class="t3'+(ok[i]?' done':'')+'"><span class="em">'+t[0]+'</span><b>'+t[1]+'</b><div class="opts">'+pool[i].map(function(w){return '<button class="opt'+(ok[i]&&t[2].indexOf(w)>-1?' ok':'')+'" type="button" data-i="'+i+'" data-w="'+w+'">'+w+'</button>'}).join("")+'</div></div>'}).join("");
+      var n=ok.filter(function(x){return x}).length;$("#sc").textContent="Benar "+n+" / "+T3.length;
+      $$(".opt").forEach(function(b){b.onclick=function(){var i=+b.dataset.i;if(ok[i])return;
+        if(T3[i][2].indexOf(b.dataset.w)>-1){ok[i]=true;draw();var m=ok.filter(function(x){return x}).length;if(m===T3.length){$("#ms").textContent="Hebat! Semua jawaban benar.";$("#ms").className="msg good"}}
+        else{b.classList.add("bad");b.disabled=true;$("#ms").textContent="Belum tepat, pilih kata lain.";$("#ms").className="msg bad"}}})}
+    $("#rs").onclick=function(){pool=T3.map(function(t){var rest=shuffle(T3OPT.filter(function(w){return t[2].indexOf(w)<0})).slice(0,3);return shuffle(t[2].slice(0,1).concat(rest))});reset()};
+    reset()}});
+
+/* 9 act4 */
+S.push({title:"Activity 4",render:function(){
+  return '<div class="head"><div class="row"><span class="tag l">Latihan</span><h2>Activity 4 · Tom and the thorny fruit</h2><span class="score" id="sc"></span></div><p>Baca ringkasan cerita komik tentang Tom dan Johan, lalu jawab pertanyaannya.</p></div>'+
+  '<div class="tabs"><button class="tabb on" type="button" data-t="0">Cerita</button><button class="tabb" type="button" data-t="1">Pertanyaan</button></div><div id="tb" style="flex:1;min-height:0;display:flex"></div>'},
+  init:function(){
+    var tab=0,ans=STORYQ.map(function(){return -1});
+    function draw(){
+      $$(".tabb").forEach(function(b){b.classList.toggle("on",+b.dataset.t===tab)});
+      var n=ans.filter(function(a,i){return a===STORYQ[i][2]}).length;$("#sc").textContent=tab?("Benar "+n+" / "+STORYQ.length):"";
+      if(!tab){$("#tb").innerHTML='<div class="scenes">'+SCENES.map(function(s){return '<div class="scene"><span class="em">'+s[0]+'</span><h5>'+s[1]+'</h5><p>'+s[2]+'</p></div>'}).join("")+'</div>'}
+      else{$("#tb").innerHTML='<div class="qa">'+STORYQ.map(function(q,i){return '<div class="qbox"><p>'+(i+1)+'. '+q[0]+'</p><div class="opts">'+q[1].map(function(o,k){var c="opt";if(ans[i]===k)c+=k===q[2]?" ok":" bad";return '<button class="'+c+'" type="button" data-i="'+i+'" data-k="'+k+'">'+o+'</button>'}).join("")+'</div></div>'}).join("")+'</div>';
+        $$(".opt").forEach(function(b){b.onclick=function(){var i=+b.dataset.i;if(ans[i]===STORYQ[i][2])return;ans[i]=+b.dataset.k;draw()}})}}
+    $$(".tabb").forEach(function(b){b.onclick=function(){tab=+b.dataset.t;draw()}});
+    draw()}});
+
+/* 10 quiz */
+var QPOOL_FOOD=FOODS.map(function(f){return f[0]}),QPOOL_DR=DRINKS.map(function(d){return d[0]}),QPOOL_TA=TASTES.map(function(t){return t[0]}),QPOOL_TX=TEXTURES.map(function(t){return t[0]});
+var QBANK=[
+ ["🍕","What food is this?","Pizza",QPOOL_FOOD],["🍜","What food is this?","Noodle",QPOOL_FOOD],["🍢","What food is this?","Satay",QPOOL_FOOD],["🥐","What food is this?","Croissant",QPOOL_FOOD],
+ ["🍵","What drink is this?","Tea",QPOOL_DR.concat(["Soda"])],["🧃","What drink is this?","Juice",QPOOL_DR.concat(["Soda"])],
+ ["🍋","The lemon is very ___.","sour",QPOOL_TA],["🍬","The candy is very ___.","sweet",QPOOL_TA],
+ ["🧊","The ice cube is ___.","cold",QPOOL_TX],
+ ["🎤","How do you ask about someone's favorite food?","What is your favorite food?",["How does it taste?","What does it feel like?","Do you like water?"]]];
+S.push({title:"Kuis Akhir",render:function(){
+  return '<div class="head"><div class="row"><span class="tag q">Kuis</span><h2>Kuis Akhir</h2><span class="score" id="sc"></span></div></div><div class="quiz" id="qz"></div>'},
+  init:function(){
+    var qs,i,score,locked;
+    function start(){qs=shuffle(QBANK);i=0;score=0;locked=false;draw()}
+    function draw(){
+      if(i>=qs.length){var st=score>=9?3:score>=7?2:score>=5?1:0;
+        var msg=["Ayo belajar lagi, kamu pasti bisa!","Bagus, terus berlatih!","Keren, hampir sempurna!","Luar biasa, kamu hebat!"][st];
+        $("#qz").innerHTML='<div class="result"><div class="stars">'+"★★★".slice(0,st)+'<span style="opacity:.25">'+"★★★".slice(st)+'</span></div><h3>Skor '+score+' / '+qs.length+'</h3><p>'+msg+'</p><button class="btn go" type="button" id="again">Main lagi</button></div>';
+        $("#sc").textContent="Selesai";$("#again").onclick=start;return}
+      var q=qs[i],o=shuffle([q[2]].concat(shuffle(q[3].filter(function(x){return x!==q[2]})).slice(0,3)));
+      $("#sc").textContent="Soal "+(i+1)+" / "+qs.length+" · Skor "+score;
+      $("#qz").innerHTML='<div class="qcard"><div class="em">'+q[0]+'</div><div class="qt">'+q[1]+'</div><div class="bar" style="width:100%"><i style="width:'+(i/qs.length*100)+'%"></i></div></div><div class="qside">'+o.map(function(x){return '<button class="opt" type="button" data-v="'+x.replace(/"/g,"&quot;")+'">'+x+'</button>'}).join("")+'</div>';
+      locked=false;
+      $$(".qside .opt").forEach(function(b){b.onclick=function(){if(locked)return;locked=true;
+        var good=b.dataset.v===q[2];if(good){score++;b.classList.add("ok")}else{b.classList.add("bad");$$(".qside .opt").forEach(function(x){if(x.dataset.v===q[2])x.classList.add("ok")})}
+        $("#sc").textContent="Soal "+(i+1)+" / "+qs.length+" · Skor "+score;
+        setTimeout(function(){i++;draw()},1100)}})}
+    start()}});
+
+/* ---------- shell ---------- */
+var cur=0,visited={0:1},v=$("#view");
+function go(n){if(n<0||n>=S.length)return;cur=n;visited[n]=1;try{if(window.speechSynthesis)speechSynthesis.cancel()}catch(e){}
+  v.innerHTML=S[n].render();if(S[n].init)S[n].init();
+  $$("[data-go]",v).forEach(function(b){b.onclick=function(){go(+b.dataset.go)}});
+  $("#bPrev").disabled=n===0;$("#bNext").disabled=n===S.length-1;
+  $("#bNext").textContent=n===0?"Mulai":"Selanjutnya";
+  $$(".dot").forEach(function(d,k){d.classList.toggle("on",k===n);d.classList.toggle("done",k!==n&&!!visited[k])})}
+$("#dots").innerHTML=S.map(function(s,i){return '<button class="dot" type="button" aria-label="'+s.title+'" title="'+s.title+'" data-i="'+i+'"></button>'}).join("");
+$$(".dot").forEach(function(d){d.onclick=function(){go(+d.dataset.i)}});
+$("#bPrev").onclick=function(){go(cur-1)};
+$("#bNext").onclick=function(){go(cur+1)};
+$("#bHome").onclick=function(){go(0)};
+$("#bFs").onclick=function(){try{if(document.fullscreenElement){document.exitFullscreen()}else{var p=document.documentElement.requestFullscreen();if(p&&p.catch)p.catch(function(){})}}catch(e){}};
+$("#bDev").onclick=function(){$("#ovl").hidden=false;$("#bClose").focus()};
+$("#bClose").onclick=function(){$("#ovl").hidden=true};
+$("#ovl").onclick=function(e){if(e.target===this)this.hidden=true};
+document.addEventListener("keydown",function(e){
+  if(e.key==="Escape")$("#ovl").hidden=true;
+  else if(!$("#ovl").hidden)return;
+  else if(e.key==="ArrowRight")go(cur+1);else if(e.key==="ArrowLeft")go(cur-1)});
+
+/* 16:9 scaling */
+function fit(){var w=window.innerWidth,h=window.innerHeight,s=Math.min(w/1280,h/720),st=$("#stage");
+  st.style.transform="translate("+Math.round((w-1280*s)/2)+"px,"+Math.round((h-720*s)/2)+"px) scale("+s+")"}
+window.addEventListener("resize",fit);fit();
+go(0);
+})();
+</script>
+
+</body></html>
