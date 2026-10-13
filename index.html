@@ -219,10 +219,14 @@ button:focus-visible{outline:3px solid var(--sky);outline-offset:2px}
 .dcard .pic{width:112px;height:112px;font-size:76px}
 .panel .pic.big{width:180px;height:180px;font-size:100px}
 .pbtn .pic{width:132px;height:132px;font-size:68px}
-.t3 .pic{width:132px;height:132px;font-size:70px}
+.t3 .pic{width:172px;height:172px;font-size:90px}
+.t3 .opt{min-height:46px;font-size:17px}
+.tile .pic{width:84px;height:84px;font-size:52px}
+.tile .pic.scene{width:100%;height:auto;aspect-ratio:3/2;max-height:84px}
+.score:empty{display:none}
 .pic.scene{position:relative;width:100%;height:auto;aspect-ratio:3/2;border-radius:12px;overflow:hidden;font-size:64px;background:var(--soft)}
 .pic.scene img{position:absolute;inset:0;mix-blend-mode:normal;object-fit:cover}
-.scene p{font-size:16px}
+.scene p{font-size:18px}
 .qcard .pic.qp{width:230px;height:230px;font-size:110px}
 
 /* modal */
@@ -234,6 +238,114 @@ button:focus-visible{outline:3px solid var(--sky);outline-offset:2px}
 .modal h3{margin:0;font-family:var(--f-display);font-size:38px;font-weight:700}
 .modal .role{margin:0;font-size:20px;font-weight:600;color:var(--ink2)}
 .modal .note{margin:10px 0 14px;color:var(--muted);font-size:15px;line-height:1.5}
+/* v2 additions */
+.ctl{flex-wrap:wrap}
+.tiles{grid-template-columns:repeat(5,1fr);grid-template-rows:repeat(3,1fr);gap:12px}
+.tile{padding:12px 12px 10px;gap:4px}
+.tile .pic{width:62px;height:62px;font-size:38px}
+.tile .pic.scene{width:100%;height:auto;max-height:62px}
+.tile b{font-size:17px}
+.tile small{font-size:12px}
+.role .say-b{font-size:19px;padding:10px 14px}
+.lab{display:block;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:4px;font-weight:700}
+.quant{grid-template-columns:1.1fr 1fr}
+.tray{flex:1;min-height:100px;background:var(--soft);border-radius:14px;padding:12px;display:flex;flex-wrap:wrap;align-content:flex-start;gap:2px 8px;font-size:38px;line-height:1.15}
+.tray .empty{font-size:18px;color:var(--muted);margin:auto}
+.rng{display:flex;align-items:center;gap:12px}
+.rng input[type=range]{flex:1;accent-color:var(--leaf);height:28px;min-width:0}
+.rng .n{min-width:48px;text-align:center;font-family:var(--f-display);font-size:34px;font-weight:600}
+.sbtn{width:46px;height:46px;border-radius:12px;border:0;background:var(--ink);color:#fff;font-size:26px;font-weight:700;line-height:1}
+.sbtn:hover{background:var(--ink2)}
+.sline{background:var(--soft);border-radius:12px;padding:12px 14px;font-size:22px;font-weight:600}
+.sline.q{background:#e7f1fb}
+.rule{background:#fff1cc;border-radius:12px;padding:12px 14px;font-size:16px;line-height:1.55}
+.ingr{grid-template-columns:330px 1fr}
+.dgrid{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:repeat(4,1fr);gap:10px;min-height:0}
+.dbtn{background:var(--card);border:2px solid var(--line);border-radius:14px;display:flex;align-items:center;gap:8px;padding:6px 10px;text-align:left;font-weight:700;font-size:15px;min-width:0}
+.dbtn .pic{width:44px;height:44px;font-size:28px}
+.dbtn.on{border-color:var(--mango);background:#fff7e1}
+.dbtn.done{border-color:var(--leaf)}
+.dbtn .ck{margin-left:auto;color:var(--leaf);font-weight:800}
+.ipanel{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px 20px;display:flex;flex-direction:column;gap:10px;min-height:0}
+.itop{display:flex;align-items:center;gap:18px}
+.itop .pic{width:140px;height:140px;font-size:80px}
+.itop h3{margin:0;font-family:var(--f-display);font-size:34px;font-weight:600}
+.itop p{margin:4px 0 0;color:var(--muted);font-size:16px}
+.ichips{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.ic{background:var(--soft);border:2px solid transparent;border-radius:12px;padding:14px 2px;display:flex;flex-direction:column;align-items:center;font-weight:700;font-size:16px}
+.ic .e{font-size:40px;line-height:1.1}
+.ic.sel{background:#fff7e1;border-color:var(--mango)}
+.ic.ok{background:var(--ok-bg);border-color:var(--leaf)}
+.ic.bad{background:var(--bad-bg);border-color:var(--chili)}
+.ic.miss{border:2px dashed var(--leaf)}
+.local{grid-template-columns:1fr 500px}
+.lgrid{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(2,1fr);gap:12px;min-height:0}
+.lcard{background:var(--card);border:2px solid var(--line);border-radius:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:8px}
+.lcard .pic{width:128px;height:128px;font-size:70px}
+.lcard b{font-family:var(--f-display);font-weight:600;font-size:20px}
+.lcard small{color:var(--muted);font-size:13px}
+.lcard:hover{border-color:var(--ink2)}
+.lcard.on{border-color:var(--mango);background:#fff7e1}
+.lpanel{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px 20px;display:flex;flex-direction:column;gap:6px;min-height:0;overflow:auto}
+.lpanel h3{margin:0;font-family:var(--f-display);font-size:30px;font-weight:600}
+.lpanel p{margin:0;font-size:17px;line-height:1.4}
+.pill{display:inline-block;background:var(--soft);border-radius:999px;padding:4px 12px;font-size:14px;font-weight:700;margin:0 6px 4px 0}
+.pill.o{background:#fff1cc}
+.turn{background:#e7f1fb;border-radius:12px;padding:10px 14px;font-size:18px;font-weight:600}
+.lsn{flex:1;min-height:0;display:flex;flex-direction:column;gap:14px}
+.lbar{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.play{background:var(--ink);color:#fff;border:0;border-radius:14px;min-height:60px;padding:0 26px;font-size:20px;font-weight:700}
+.play:hover{background:var(--ink2)}
+.tr{flex:1;min-width:0;font-size:20px;font-weight:600;background:var(--soft);border-radius:12px;padding:12px 16px;min-height:52px}
+.lopts{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;flex:1;min-height:0}
+.lo{background:var(--card);border:2px solid var(--line);border-radius:18px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px}
+.lo .pic{width:170px;height:170px;font-size:90px}
+.lo b{font-size:20px}
+.lo:hover{border-color:var(--ink2)}
+.lo.ok{background:var(--ok-bg);border-color:var(--leaf)}
+.lo.bad{background:var(--bad-bg);border-color:var(--chili)}
+.wr{grid-template-columns:320px 1fr 300px}
+.wbank{display:flex;flex-wrap:wrap;gap:7px}
+.wchip{background:var(--soft);border:0;border-radius:10px;padding:6px 10px;font-weight:700;font-size:14px}
+.wchip.t{background:#ffe9b8}
+.wchip.x{background:#cfe6f7}
+.wchip.i{background:#d7efdf}
+.wchip:hover{filter:brightness(.95)}
+.frames{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:5px;font-size:16px;font-weight:600}
+#wt{width:100%;flex:1;min-height:0;resize:none;border-radius:14px;border:2px solid var(--line);background:var(--card);color:var(--ink);padding:14px 16px;font-family:inherit;font-size:20px;line-height:1.5}
+#wt:focus-visible{outline:3px solid var(--sky);outline-offset:2px}
+.chk{display:flex;flex-direction:column;gap:12px;font-size:17px;font-weight:600}
+.chk div{display:flex;gap:10px;align-items:center}
+.chk i{flex:none;width:26px;height:26px;border-radius:50%;border:2px solid var(--line);display:grid;place-items:center;font-style:normal;font-size:14px;color:#fff}
+.chk .y i{background:var(--leaf);border-color:var(--leaf)}
+.lvls{grid-column:1/-1;min-height:0;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.lvl{background:var(--card);border:2px solid var(--line);border-radius:22px;padding:26px;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:10px;text-align:left}
+.lvl:hover{border-color:var(--ink2)}
+.lvl .st{font-size:34px;letter-spacing:4px;color:var(--mango)}
+.lvl h3{margin:0;font-family:var(--f-display);font-size:38px;font-weight:600}
+.lvl p{margin:0;font-size:18px;color:var(--muted);line-height:1.4}
+.banner{background:#fff1cc;border-radius:10px;padding:6px 14px;font-weight:700;font-size:15px}
+
+/* teacher panel */
+.modal.wide{width:800px;max-height:620px;overflow:auto;align-items:stretch;text-align:left;gap:12px}
+.modal.wide h3{font-size:30px}
+.modal.wide h4{margin:10px 0 6px;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.modal.wide ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:5px;font-size:16px;line-height:1.4}
+.modal.wide .tabs{margin:2px 0 4px}
+.kgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.kitem{display:flex;align-items:center;gap:8px;background:var(--soft);border-radius:10px;padding:6px 10px;font-weight:700;font-size:15px}
+.pic.kp{width:38px;height:38px;font-size:26px}
+.inp{height:46px;border-radius:12px;border:2px solid var(--line);background:var(--card);color:var(--ink);padding:0 14px;font-family:inherit;font-size:17px;min-width:0}
+.inp:focus-visible{outline:3px solid var(--sky);outline-offset:2px}
+.tbl{width:100%;border-collapse:collapse;font-size:16px}
+.tbl th{text-align:left;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding:6px 8px;border-bottom:2px solid var(--line)}
+.tbl td{padding:8px;border-bottom:1px solid var(--line);font-variant-numeric:tabular-nums}
+.savebox{display:flex;gap:10px;align-items:center;margin-top:8px}
+.savebox .inp{width:260px}
+.result .msg{min-height:24px;color:#bfe9d3}
+#rot{position:fixed;left:12px;right:12px;top:calc(12px + env(safe-area-inset-top,0px));z-index:20;background:var(--mango);color:var(--mango-ink);border-radius:12px;padding:10px 12px 10px 14px;font-weight:700;font-size:14px;line-height:1.35;display:flex;gap:10px;align-items:center}
+#rot[hidden]{display:none}
+#rot .rb{flex:none;border:0;background:var(--mango-ink);color:#fff;border-radius:8px;height:34px;padding:0 12px;font-weight:700}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 
@@ -243,6 +355,7 @@ button:focus-visible{outline:3px solid var(--sky);outline-offset:2px}
     <span class="sp"></span>
     <button class="tb" id="bHome" type="button">Beranda</button>
     <button class="tb" id="bFs" type="button">Layar penuh</button>
+    <button class="tb" id="bTeach" type="button">Guru</button>
     <button class="tb dev" id="bDev" type="button">Pengembang</button>
   </header>
   <main id="view"></main>
@@ -261,7 +374,11 @@ button:focus-visible{outline:3px solid var(--sky);outline-offset:2px}
       <button class="btn" id="bClose" type="button">Tutup</button>
     </div>
   </div>
+  <div class="ovl" id="ovl2" hidden>
+    <div class="modal wide" role="dialog" aria-modal="true" aria-label="Panel guru"><div id="tp"></div></div>
+  </div>
 </div>
+<div id="rot" hidden><span>Putar perangkat ke posisi mendatar (landscape) agar tampilan lebih besar.</span><button class="rb" id="rotx" type="button">Tutup</button></div>
 
 <script>
 (function(){
@@ -271,7 +388,7 @@ function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(M
 function say(t){try{if(!window.speechSynthesis)return;speechSynthesis.cancel();var u=new SpeechSynthesisUtterance(t);u.lang="en-US";u.rate=.85;speechSynthesis.speak(u)}catch(e){}}
 
 /* ---------- images ---------- */
-function pic(file,emoji,cls){return '<span class="pic '+(cls||'')+'"><img src="assets/images/'+file+'.webp" alt="" draggable="false"><span class="fb">'+emoji+'</span></span>'}
+function pic(file,emoji,cls){if(!file)return '<span class="pic noimg '+(cls||'')+'"><span class="fb">'+emoji+'</span></span>';return '<span class="pic '+(cls||'')+'"><img src="assets/images/'+file+'.webp" alt="" draggable="false"><span class="fb">'+emoji+'</span></span>'}
 document.addEventListener("error",function(e){var t=e.target;if(t&&t.tagName==="IMG"&&t.parentNode&&t.parentNode.classList&&t.parentNode.classList.contains("pic")){t.parentNode.classList.add("noimg");t.parentNode.removeChild(t)}},true);
 var FOOD_FILES=["food-01-sandwich","food-02-hamburger","food-03-fish-and-chips","food-04-pizza","food-05-salad","food-06-fried-rice","food-07-steak","food-08-hotdog","food-09-soup","food-10-porridge","food-11-noodle","food-12-french-fries","food-13-roasted-chicken","food-14-satay","food-15-sushi","food-16-kebab","food-17-white-bread","food-18-bun","food-19-croissant","food-20-baguette"];
 var DRINK_FILES=["drink-milk","drink-water","drink-tea","drink-coffee","drink-juice"];
@@ -296,7 +413,7 @@ var FILL=[
  ["🥭","This unripe mango makes my face squeeze. It is","sour"],
  ["☕","Black coffee without sugar is","bitter"],
  ["🥔","Potato chips have a lot of salt, so they are","salty"],
- ["🍤","The fried tofu with seasoning is","savory"]];
+ ["🍗","The fried chicken with seasoning is","savory"]];
 var FILLBANK=["spicy","sweet","sour","bitter","salty","savory"];
 var T3=[
  ["🍬","sugar",["sweet"],"a3-sugar"],["🥚","egg",["savory","plain","tasty"],"a3-egg"],["💧","water",["plain"],"a3-water-bottles"],["🍭","candies",["sweet"],"a3-candies"],["🌶️","chili sauce",["spicy"],"a3-chili-sauce"]];
@@ -318,12 +435,28 @@ var S=[];
 
 /* 0 home */
 S.push({title:"Beranda",render:function(){
-  var tiles=[["food","🍕","Types of Food","20 jenis makanan","Materi","m"],["drink","🧃","Types of Beverages","5 jenis minuman","Materi","m"],["taste","🍋","Asking About Taste","Rasa makanan","Materi","m"],["texture","🍩","Texture of Food","Tekstur makanan","Materi","m"],["ask","💬","Favorite Food","Tanya jawab favorit","Materi","m"],
-   ["act1","🧀","Activity 1","Jodohkan kata & gambar","Latihan","l"],["act2","🍬","Activity 2","Lengkapi kalimat rasa","Latihan","l"],["act3","🥚","Activity 3","Bagaimana rasanya?","Latihan","l"],["act4","🍈","Activity 4","Cerita Tom & Johan","Latihan","l"],["quiz","🏆","Kuis Akhir","10 soal campuran","Kuis","q"]];
+  var tiles=[
+   ["food","Types of Food","20 jenis makanan","Materi","m"],
+   ["drink","Types of Beverages","5 jenis minuman","Materi","m"],
+   ["taste","Asking About Taste","Rasa makanan","Materi","m"],
+   ["texture","Texture of Food","Tekstur makanan","Materi","m"],
+   ["quant","Quantifiers","some, any, many, much","Materi","m"],
+   ["ingr","Food Ingredients","Bahan makanan","Materi","m"],
+   ["local","Local Dishes","Makanan khas daerah","Materi","m"],
+   ["ask","Speaking Practice","Tanya jawab favorit","Materi","m"],
+   ["listen","Listening","Dengar lalu pilih gambar","Latihan","l"],
+   ["act1","Activity 1","Jodohkan kata dan gambar","Latihan","l"],
+   ["act2","Activity 2","Lengkapi kalimat rasa","Latihan","l"],
+   ["act3","Activity 3","Bagaimana rasanya?","Latihan","l"],
+   ["act4","Activity 4","Cerita Tom dan Johan","Latihan","l"],
+   ["write","My Favorite Food","Menulis deskripsi","Latihan","l"],
+   ["quiz","Kuis Akhir","3 level dan ulangan","Kuis","q"]];
+  var emo={food:"🍕",drink:"🧃",taste:"🍋",texture:"🍩",quant:"🥚",ingr:"🧅",local:"🍢",ask:"💬",listen:"🎧",act1:"🧀",act2:"🌶️",act3:"🥚",act4:"🏠",write:"✏️",quiz:"🏆"};
+  var img={food:["food-04-pizza",""],drink:["drink-juice",""],local:["local-sate-madura",""],ingr:["food-06-fried-rice",""],act1:["a1-cheese",""],act2:["a3-chili-sauce",""],act3:["a3-egg",""],act4:["act4-scene3-try-it","scene"]};
   return '<div class="home"><section class="hero"><p class="eyebrow">Chapter 2 · Lesson 1</p><h1>Good Food,<br>Good Life!</h1><p class="lead">My Favorite Food · English for SMP/MTs Kelas VII</p>'+
   '<h3>Tujuan pembelajaran</h3><ul><li>Menyebutkan jenis makanan</li><li>Menyebutkan jenis minuman</li><li>Menggunakan kata penjumlah (quantifiers)</li><li>Mendeskripsikan makanan</li><li>Mengenali bahan makanan</li></ul>'+
   '<button class="btn go" type="button" data-go="1">Mulai belajar</button><div class="plate">🍜</div></section>'+
-  '<section class="tiles">'+tiles.map(function(t,i){return '<button class="tile" type="button" data-go="'+(i+1)+'"><span class="tag '+t[5]+'">'+t[4]+'</span><span class="em">'+t[1]+'</span><b>'+t[2]+'</b><small>'+t[3]+'</small></button>'}).join("")+'</section></div>'}});
+  '<section class="tiles">'+tiles.map(function(t,i){var im=img[t[0]];return '<button class="tile" type="button" data-go="'+(i+1)+'"><span class="tag '+t[4]+'">'+t[3]+'</span>'+pic(im?im[0]:null,emo[t[0]],im?im[1]:"")+'<b>'+t[1]+'</b><small>'+t[2]+'</small></button>'}).join("")+'</section></div>'}});
 
 /* 1 food */
 S.push({title:"Types of Food",render:function(){
@@ -373,14 +506,29 @@ S.push(builder("taste",TASTE_ITEMS,TASTES,function(x){return 'How does the <em>'
 S.push(builder("texture",TEX_ITEMS,TEXTURES,function(x){return 'What does the <em>'+x+'</em> feel like?'},function(w){return "It's so <em>"+w+"</em>."},"D. Texture of Food","Gunakan pertanyaan “What does it feel like?” untuk menanyakan tekstur.","Makanan","Kata tekstur","texture"));
 
 /* 5 ask */
-S.push({title:"Favorite Food",render:function(){
+var ROLE=[
+ ["What is your favorite food?","I like ___. It's ___.","favorite food + taste word","Add one more sentence about the texture."],
+ ["What is your favorite drink?","I like ___. It's ___.","favorite drink + taste word","Say when you usually drink it."],
+ ["What food do you like for breakfast?","I like ___ for breakfast.","breakfast food","Say how it tastes."],
+ ["What food do you like for lunch?","I like ___ for lunch.","lunch food","Say how it tastes."],
+ ["What food do you like for dinner?","I like ___ for dinner.","dinner food","Say how it feels (texture)."],
+ ["How does the mango taste?","It's ___.","one taste word","Use two words: It's ___ and ___."],
+ ["What does the donut feel like?","It's so ___.","one texture word","Add one more texture word."]];
+S.push({title:"Speaking Practice",render:function(){
   return head("Materi","m","E. Asking About Favorite Food","Pelajari pertanyaan dan jawaban, lalu berlatih berpasangan dengan temanmu.")+
   '<div class="split ask"><div class="col"><h4>Questions</h4><div class="list"><div class="qline">What is your favorite food?</div><div class="qline">What is your favorite drink?</div><div class="qline">What food do you like for breakfast / lunch / dinner?</div></div></div>'+
   '<div class="col"><h4>Responses</h4><div class="list"><div class="qline r">I like fried rice. It\'s tasty.</div><div class="qline r">I like orange juice. It\'s fresh and sweet.</div><div class="qline r">I like salad. It\'s fresh and healthy.</div></div></div>'+
-  '<div class="col"><h4>Speaking practice</h4><div class="rnd"><div class="em">🎲</div><div class="qq" id="rq">Tekan tombol untuk mendapat pertanyaan.</div><button class="btn go" type="button" id="rb">Acak pertanyaan</button><button class="btn alt" type="button" id="rs">Dengarkan</button></div></div></div>'},
-  init:function(){var cur="";
-    $("#rb").onclick=function(){var q;do{q=ASKQ[Math.floor(Math.random()*ASKQ.length)]}while(q===cur);cur=q;$("#rq").textContent=q;say(q)};
-    $("#rs").onclick=function(){if(cur)say(cur)}}});
+  '<div class="col"><h4>Role play berpasangan</h4><div class="tabs" id="lv"><button class="tabb on" type="button" data-l="0">Level 1</button><button class="tabb" type="button" data-l="1">Level 2</button><button class="tabb" type="button" data-l="2">Level 3</button></div><div class="bubbles" id="rp"></div><div class="ctl"><button class="btn go" type="button" id="rb">Kartu baru</button><button class="btn alt" type="button" id="rw">Tukar peran</button><button class="btn alt" type="button" id="rs">Dengarkan</button></div></div></div>'},
+  init:function(){
+    var lvl=0,idx=0,swap=false,labs=["Kerangka jawaban","Kata kunci","Tantangan"];
+    function draw(){var r=ROLE[idx],a=swap?"B":"A",b=swap?"A":"B",h=lvl===0?r[1]:lvl===1?r[2]:r[3];
+      $("#rp").innerHTML='<div class="bub role"><span class="who a">'+a+'</span><div class="say-b"><span class="lab">Bertanya</span>'+r[0]+'</div></div><div class="bub r role"><span class="who b">'+b+'</span><div class="say-b"><span class="lab">'+labs[lvl]+'</span>'+h+'</div></div>';
+      $$("#lv .tabb").forEach(function(t){t.classList.toggle("on",+t.dataset.l===lvl)})}
+    $$("#lv .tabb").forEach(function(t){t.onclick=function(){lvl=+t.dataset.l;draw()}});
+    $("#rb").onclick=function(){var n;do{n=Math.floor(Math.random()*ROLE.length)}while(n===idx);idx=n;draw();say(ROLE[idx][0])};
+    $("#rw").onclick=function(){swap=!swap;draw()};
+    $("#rs").onclick=function(){say(ROLE[idx][0])};
+    draw()}});
 
 /* 6 act1 */
 S.push({title:"Activity 1",render:function(){
@@ -452,35 +600,276 @@ S.push({title:"Activity 4",render:function(){
     $$(".tabb").forEach(function(b){b.onclick=function(){tab=+b.dataset.t;draw()}});
     draw()}});
 
-/* 10 quiz */
-var QPOOL_FOOD=FOODS.map(function(f){return f[0]}),QPOOL_DR=DRINKS.map(function(d){return d[0]}),QPOOL_TA=TASTES.map(function(t){return t[0]}),QPOOL_TX=TEXTURES.map(function(t){return t[0]});
-var QBANK=[
- ["🍕","What food is this?","Pizza",QPOOL_FOOD,"food-04-pizza"],["🍜","What food is this?","Noodle",QPOOL_FOOD,"food-11-noodle"],["🍢","What food is this?","Satay",QPOOL_FOOD,"food-14-satay"],["🥐","What food is this?","Croissant",QPOOL_FOOD,"food-19-croissant"],
- ["🍵","What drink is this?","Tea",QPOOL_DR.concat(["Soda"]),"drink-tea"],["🧃","What drink is this?","Juice",QPOOL_DR.concat(["Soda"]),"drink-juice"],
- ["🍋","The lemon is very ___.","sour",QPOOL_TA],["🍬","The candy is very ___.","sweet",QPOOL_TA],
- ["🧊","The ice cube is ___.","cold",QPOOL_TX],
- ["🎤","How do you ask about someone's favorite food?","What is your favorite food?",["How does it taste?","What does it feel like?","Do you like water?"]]];
+/* 10 quiz (3 levels) */
+var QPOOL_FOOD=FOODS.map(function(f){return f[0]}),QPOOL_DR=DRINKS.map(function(d){return d[0]});
+var INGR={rice:"🍚",egg:"🥚",onion:"🧅",garlic:"🧄",chili:"🌶️",lettuce:"🥬",tomato:"🍅",cucumber:"🥒",carrot:"🥕",bread:"🍞",cheese:"🧀",beef:"🥩",flour:"🌾",mushroom:"🍄",noodles:"🍜",chicken:"🍗",peanut:"🥜",potato:"🥔",corn:"🌽",milk:"🥛",banana:"🍌",chocolate:"🍫",orange:"🍊",fish:"🐟"};
+var DISH=[
+ ["Fried rice","food-06-fried-rice",["rice","egg","onion","garlic","chili"]],
+ ["Salad","food-05-salad",["lettuce","tomato","cucumber","carrot"]],
+ ["Sandwich","food-01-sandwich",["bread","lettuce","tomato","cheese"]],
+ ["Hamburger","food-02-hamburger",["bread","beef","lettuce","tomato","cheese"]],
+ ["Pizza","food-04-pizza",["flour","tomato","cheese","mushroom"]],
+ ["Noodle","food-11-noodle",["noodles","egg","chicken","lettuce"]],
+ ["Satay","food-14-satay",["chicken","peanut","chili","onion"]],
+ ["Soup","food-09-soup",["carrot","potato","onion","corn"]]];
+function fq(name){var i=QPOOL_FOOD.indexOf(name);return {e:FOODS[i][1],f:FOOD_FILES[i],t:"What food is this?",a:name,p:QPOOL_FOOD}}
+function dq(name){var i=QPOOL_DR.indexOf(name);return {e:DRINKS[i][1],f:DRINK_FILES[i],t:"What drink is this?",a:name,p:QPOOL_DR.concat(["Soda"])}}
+function tq(e,f,t,a,p){return {e:e,f:f,t:t,a:a,p:p}}
+var QLV=[
+ {k:"easy",n:"Mudah",s:"★",d:"Tebak gambar makanan, minuman, rasa, dan tekstur.",bank:[
+  fq("Pizza"),fq("Noodle"),fq("Satay"),fq("Croissant"),fq("Sushi"),fq("Hamburger"),fq("Sandwich"),fq("Salad"),dq("Tea"),dq("Juice"),dq("Milk"),dq("Coffee"),
+  tq("🍋","quiz-lemon","The lemon is very ___.","sour",["sweet","salty","spicy"]),
+  tq("🍬","a3-candies","The candy is very ___.","sweet",["sour","salty","bitter"]),
+  tq("🧊","quiz-ice-cube","The ice cube is ___.","cold",["warm","soft","greasy"]),
+  tq("🍩","quiz-donut","The donut is so ___.","soft",["cold","hard","warm"])]},
+ {k:"mid",n:"Sedang",s:"★★",d:"Rasa, tekstur, bahan makanan, pertanyaan, dan quantifiers dasar.",bank:[
+  tq("🌶️","a3-chili-sauce","How does the chili sauce taste?","It's spicy.",["It's sweet.","It's plain.","It's cold."]),
+  tq("☕","drink-coffee","Black coffee without sugar tastes ___.","bitter",["sweet","sour","soft"]),
+  tq("🥔","a1-chips","Potato chips have a lot of salt, so they are ___.","salty",["sweet","bitter","sour"]),
+  tq("🍬","quiz-toffee","Toffee is sweet and ___.","chewy",["cold","spicy","bitter"]),
+  tq("🍦","quiz-ice-cream","Ice cream feels ___.","cold",["warm","hot","salty"]),
+  tq("❓",null,"Which question asks about taste?","How does it taste?",["What does it feel like?","What is your favorite food?","Do you like water?"]),
+  tq("❓",null,"Which question asks about texture?","What does it feel like?",["How does it taste?","What is your favorite drink?","Is it a fruit?"]),
+  tq("💬",null,"Someone asks: What is your favorite drink? Choose the best answer.","I like orange juice.",["It's so soft.","He is my friend.","It's very sour."]),
+  tq("🍚","food-06-fried-rice","Which ingredient is in fried rice?","rice",["milk","chocolate","banana"]),
+  tq("🥗","food-05-salad","Which ingredient is in a salad?","lettuce",["milk","flour","chocolate"]),
+  tq("🥚",null,"There are ___ eggs in the basket. (only 2 or 3)","a few",["a little","much","an"]),
+  tq("💧",null,"There is ___ water in the glass. (a very small amount)","a little",["a few","many","several"])]},
+ {k:"hard",n:"Sulit",s:"★★★",d:"Quantifiers, tata bahasa, dan makanan khas daerah.",bank:[
+  tq("🥛",null,"Is there ___ milk in the fridge?","any",["a few","many","one"]),
+  tq("🍎",null,"There aren't ___ apples left. (zero)","any",["much","a little","an"]),
+  tq("🍵",null,"How ___ sugar do you put in your tea?","much",["many","few","a few"]),
+  tq("🥚",null,"How ___ eggs do you need for the cake?","many",["much","a little","little"]),
+  tq("🍚",null,"Which food word is uncountable?","rice",["egg","apple","banana"]),
+  tq("❓",null,"Which word is NOT a taste?","chewy",["sweet","sour","salty"]),
+  tq("❓",null,"Which word is NOT a texture?","bitter",["soft","smooth","hard"]),
+  tq("🍲",null,"Which dish is a hot soup with a yellow broth from Madura?","Soto Madura",["Rujak Cingur","Sate Madura","Lontong Balap"]),
+  tq("🍢",null,"Which dish is grilled skewers with peanut sauce?","Sate Madura",["Rawon","Bebek Madura","Soto Madura"]),
+  tq("🍲",null,"Which dish is a black beef soup from East Java?","Rawon",["Soto Madura","Rujak Cingur","Sate Madura"]),
+  tq("🍩",null,"Someone asks: What does the donut feel like? Choose the correct answer.","It's so soft.",["I like donuts.","Yes, I do.","It's very sour."]),
+  tq("🍋",null,"Lemon juice without sugar is very ___.","sour",["sweet","soft","chewy"]),
+  tq("🍵",null,"I would like ___ sugar in my tea, please. (a very small amount)","a little",["a few","many","several"])]}];
+
 S.push({title:"Kuis Akhir",render:function(){
   return '<div class="head"><div class="row"><span class="tag q">Kuis</span><h2>Kuis Akhir</h2><span class="score" id="sc"></span></div></div><div class="quiz" id="qz"></div>'},
   init:function(){
-    var qs,i,score,locked;
-    function start(){qs=shuffle(QBANK);i=0;score=0;locked=false;draw()}
+    var lv=null,qs=[],i=0,score=0,wrongs=[],phase="main",redo=0,locked=false,total=10;
+    function levelSelect(){
+      $("#sc").textContent="Pilih level";
+      $("#qz").innerHTML='<div class="lvls">'+QLV.map(function(l,k){return '<button class="lvl" type="button" data-k="'+k+'"><span class="st">'+l.s+'</span><h3>'+l.n+'</h3><p>'+l.d+'</p><p>10 soal. Soal yang salah diulang di akhir.</p></button>'}).join("")+'</div>';
+      $$(".lvl").forEach(function(b){b.onclick=function(){begin(QLV[+b.dataset.k])}})}
+    function begin(l){lv=l;qs=shuffle(l.bank).slice(0,total);i=0;score=0;wrongs=[];phase="main";redo=0;draw()}
+    function result(){
+      var st=score>=9?3:score>=7?2:score>=5?1:0;
+      var msg=["Ayo belajar lagi, kamu pasti bisa!","Bagus, terus berlatih!","Keren, hampir sempurna!","Luar biasa, kamu hebat!"][st];
+      $("#qz").innerHTML='<div class="result"><div class="stars">'+"★★★".slice(0,st)+'<span style="opacity:.25">'+"★★★".slice(st)+'</span></div><h3>Skor '+score+' / '+total+'</h3><p>Level '+lv.n+(redo?' · '+redo+' soal diulang':'')+'</p><p>'+msg+'</p><div class="savebox"><input class="inp" id="nm" type="text" maxlength="30" placeholder="Nama siswa" aria-label="Nama siswa"><button class="btn go" type="button" id="sv">Simpan skor</button></div><div class="savebox"><button class="btn alt" type="button" id="again">Main lagi</button><button class="btn alt" type="button" id="chg">Ganti level</button></div><div class="msg" id="svm"></div></div>';
+      $("#sc").textContent="Selesai";
+      $("#again").onclick=function(){begin(lv)};$("#chg").onclick=levelSelect;
+      $("#sv").onclick=function(){var nm=$("#nm").value.replace(/^\s+|\s+$/g,"")||"Tanpa nama";var a=loadScores();a.push({n:nm,s:score,t:total,l:lv.n,d:new Date().toLocaleString("id-ID",{day:"2-digit",month:"short",hour:"2-digit",minute:"2-digit"})});
+        var ok=storeScores(a);$("#svm").textContent=ok?"Skor "+nm+" tersimpan di perangkat ini.":"Skor tidak dapat disimpan di browser ini.";$("#sv").disabled=true}}
     function draw(){
-      if(i>=qs.length){var st=score>=9?3:score>=7?2:score>=5?1:0;
-        var msg=["Ayo belajar lagi, kamu pasti bisa!","Bagus, terus berlatih!","Keren, hampir sempurna!","Luar biasa, kamu hebat!"][st];
-        $("#qz").innerHTML='<div class="result"><div class="stars">'+"★★★".slice(0,st)+'<span style="opacity:.25">'+"★★★".slice(st)+'</span></div><h3>Skor '+score+' / '+qs.length+'</h3><p>'+msg+'</p><button class="btn go" type="button" id="again">Main lagi</button></div>';
-        $("#sc").textContent="Selesai";$("#again").onclick=start;return}
-      var q=qs[i],o=shuffle([q[2]].concat(shuffle(q[3].filter(function(x){return x!==q[2]})).slice(0,3)));
-      $("#sc").textContent="Soal "+(i+1)+" / "+qs.length+" · Skor "+score;
-      $("#qz").innerHTML='<div class="qcard">'+(q[4]?pic(q[4],q[0],"qp"):'<div class="em">'+q[0]+'</div>')+'<div class="qt">'+q[1]+'</div><div class="bar" style="width:100%"><i style="width:'+(i/qs.length*100)+'%"></i></div></div><div class="qside">'+o.map(function(x){return '<button class="opt" type="button" data-v="'+x.replace(/"/g,"&quot;")+'">'+x+'</button>'}).join("")+'</div>';
+      if(i>=qs.length){if(phase==="main"&&wrongs.length){phase="review";redo=wrongs.length;qs=shuffle(wrongs);i=0;wrongs=[];draw();return}result();return}
+      var q=qs[i],o=shuffle([q.a].concat(shuffle(q.p.filter(function(x){return x!==q.a})).slice(0,3)));
+      $("#sc").textContent=phase==="main"?"Soal "+(i+1)+" / "+qs.length+" · Skor "+score:"Ulangan "+(i+1)+" / "+qs.length;
+      var vis=q.f?pic(q.f,q.e,"qp"):'<div class="em">'+q.e+'</div>';
+      $("#qz").innerHTML='<div class="qcard">'+(phase==="review"?'<span class="banner">Ulangi soal yang tadi salah</span>':'')+vis+'<div class="qt">'+q.t+'</div><div class="bar" style="width:100%"><i style="width:'+(i/qs.length*100)+'%"></i></div></div><div class="qside">'+o.map(function(x){return '<button class="opt" type="button" data-v="'+x.replace(/"/g,"&quot;")+'">'+x+'</button>'}).join("")+'</div>';
       locked=false;
       $$(".qside .opt").forEach(function(b){b.onclick=function(){if(locked)return;locked=true;
-        var good=b.dataset.v===q[2];if(good){score++;b.classList.add("ok")}else{b.classList.add("bad");$$(".qside .opt").forEach(function(x){if(x.dataset.v===q[2])x.classList.add("ok")})}
-        $("#sc").textContent="Soal "+(i+1)+" / "+qs.length+" · Skor "+score;
-        setTimeout(function(){i++;draw()},1100)}})}
+        var good=b.dataset.v===q.a;
+        if(good){if(phase==="main")score++;b.classList.add("ok")}else{b.classList.add("bad");if(phase==="main")wrongs.push(q);$$(".qside .opt").forEach(function(x){if(x.dataset.v===q.a)x.classList.add("ok")})}
+        if(phase==="main")$("#sc").textContent="Soal "+(i+1)+" / "+qs.length+" · Skor "+score;
+        setTimeout(function(){i++;draw()},1200)}})}
+    levelSelect()}});
+
+/* ---------- new screens ---------- */
+/* quantifiers */
+var QITEMS=[["egg","eggs","🥚",true,""],["apple","apples","🍎",true,""],["banana","bananas","🍌",true,""],["rice","rice","🍚",false,"1 mangkuk"],["water","water","💧",false,"1 gelas"]];
+function qsent(it,n){
+  var sg=it[0],pl=it[1];
+  if(it[3]){
+    if(n===0)return ["There are no "+pl+".","There aren't any "+pl+"."];
+    if(n===1)return ["There is one "+sg+"."];
+    if(n<=4)return ["There are a few "+pl+".","There are some "+pl+"."];
+    if(n<=7)return ["There are some "+pl+".","There are many "+pl+"."];
+    return ["There are a lot of "+pl+".","There are many "+pl+"."]}
+  if(n===0)return ["There is no "+pl+".","There isn't any "+pl+"."];
+  if(n<=3)return ["There is a little "+pl+".","There is some "+pl+"."];
+  if(n<=6)return ["There is some "+pl+"."];
+  return ["There is a lot of "+pl+"."]}
+S.push({id:"quant",title:"Quantifiers",render:function(){
+  return head("Materi","m","F. Quantifiers","Geser jumlah benda dan lihat kata jumlah (quantifier) yang cocok.")+
+  '<div class="split quant"><div class="col"><h4>Pilih benda</h4><div class="chips" id="qc" style="grid-template-columns:repeat(5,1fr)">'+QITEMS.map(function(x,i){return '<button class="chip" type="button" data-i="'+i+'"><span class="em">'+x[2]+'</span>'+x[0]+'<small>'+(x[3]?"countable":"uncountable")+'</small></button>'}).join("")+'</div><h4>Jumlah</h4><div class="rng"><button class="sbtn" type="button" id="qm" aria-label="Kurangi">−</button><input id="qr" type="range" min="0" max="10" value="3" aria-label="Jumlah"><button class="sbtn" type="button" id="qp" aria-label="Tambah">+</button><span class="n" id="qn">3</span></div><div class="tray" id="qt"></div><p class="hint2" id="qu"></p></div>'+
+  '<div class="col"><h4>Kalimat yang cocok</h4><div class="list" id="qs"></div><div class="ctl"><button class="btn" type="button" id="qsay">Dengarkan</button></div><div class="rule"><b>Countable</b> (bisa dihitung): many, a few, a lot of, some, any<br><b>Uncountable</b> (tidak bisa dihitung): much, a little, a lot of, some, any<br><b>some</b> untuk kalimat positif, <b>any</b> untuk kalimat negatif dan tanya.</div></div></div>'},
+  init:function(){
+    var it=0,n=3;
+    function upd(){var x=QITEMS[it];
+      $$("#qc .chip").forEach(function(c,k){c.classList.toggle("on",k===it)});
+      $("#qr").value=n;$("#qn").textContent=n;
+      var h="";for(var k=0;k<n;k++)h+="<span>"+x[2]+"</span>";
+      $("#qt").innerHTML=n?h:'<span class="empty">Kosong</span>';
+      $("#qu").textContent=x[3]?"Setiap gambar = 1 buah.":"Setiap gambar = "+x[4]+".";
+      var ss=qsent(x,n).map(function(s){return '<div class="sline">'+s+'</div>'});
+      ss.push('<div class="sline q">'+(x[3]?"How many "+x[1]+" are there?":"How much "+x[1]+" is there?")+'</div>');
+      $("#qs").innerHTML=ss.join("")}
+    $$("#qc .chip").forEach(function(c){c.onclick=function(){it=+c.dataset.i;upd()}});
+    $("#qr").oninput=function(){n=+this.value;upd()};
+    $("#qm").onclick=function(){n=Math.max(0,n-1);upd()};
+    $("#qp").onclick=function(){n=Math.min(10,n+1);upd()};
+    $("#qsay").onclick=function(){say(qsent(QITEMS[it],n).join(" "))};
+    upd()}});
+
+/* ingredients */
+S.push({id:"ingr",title:"Food Ingredients",render:function(){
+  return '<div class="head"><div class="row"><span class="tag m">Materi</span><h2>G. Food Ingredients</h2><span class="score" id="sc"></span></div><p>Pilih hidangan di kiri, lalu pilih semua bahan yang ada di dalamnya.</p></div>'+
+  '<div class="split ingr"><div class="dgrid">'+DISH.map(function(d,i){return '<button class="dbtn" type="button" data-i="'+i+'">'+pic(d[1],"🍽️")+'<span>'+d[0]+'</span><span class="ck"></span></button>'}).join("")+'</div><div class="ipanel" id="ip"></div></div>'},
+  init:function(){
+    var cur=0,sel={},checked=false,chips=[],done={},msg="",good=false;
+    function setDish(i){cur=i;sel={};checked=false;msg="";good=false;var d=DISH[i];var pool=Object.keys(INGR).filter(function(k){return d[2].indexOf(k)<0});chips=shuffle(d[2].concat(shuffle(pool).slice(0,10-d[2].length)));draw()}
+    function draw(){
+      var d=DISH[cur];
+      $$(".dbtn").forEach(function(b,k){b.classList.toggle("on",k===cur);b.classList.toggle("done",!!done[k]);$(".ck",b).textContent=done[k]?"✓":""});
+      $("#sc").textContent="Selesai "+Object.keys(done).length+" / "+DISH.length;
+      $("#ip").innerHTML='<div class="itop">'+pic(d[1],"🍽️")+'<div><h3>'+d[0]+'</h3><p>Ada '+d[2].length+' bahan di hidangan ini.</p></div></div>'+
+       '<div class="ichips">'+chips.map(function(c){var isC=d[2].indexOf(c)>-1,s=!!sel[c],cls="";
+         if(checked){cls=s&&isC?" ok":s?" bad":isC?" miss":""}else if(s)cls=" sel";
+         return '<button class="ic'+cls+'" type="button" data-c="'+c+'"><span class="e">'+INGR[c]+'</span>'+c+'</button>'}).join("")+'</div>'+
+       '<div class="ctl"><button class="btn go" type="button" id="ick">Periksa</button><button class="btn alt" type="button" id="irs">Ulangi</button><div class="msg '+(good?"good":"bad")+'" id="im">'+msg+'</div></div>';
+      $$(".ic").forEach(function(b){b.onclick=function(){if(checked)return;var c=b.dataset.c;sel[c]=!sel[c];draw()}});
+      $("#ick").onclick=function(){if(checked)return;var r=0,w=0;chips.forEach(function(c){var isC=d[2].indexOf(c)>-1;if(sel[c]){if(isC)r++;else w++}});
+        checked=true;good=(r===d[2].length&&w===0);msg=good?"Benar semua! Bahan lengkap.":"Benar "+r+" dari "+d[2].length+", salah pilih "+w+".";if(good)done[cur]=1;draw()};
+      $("#irs").onclick=function(){setDish(cur)}}
+    $$(".dbtn").forEach(function(b){b.onclick=function(){setDish(+b.dataset.i)}});
+    setDish(0)}});
+
+/* local dishes */
+var LOCAL=[
+ ["Sate Madura","local-sate-madura","🍢","Madura","Grilled chicken skewers with a thick, sweet peanut sauce. People usually eat it with rice cake or rice.",["sweet","savory"],["soft","a little chewy"],["chicken","peanut","sweet soy sauce","shallot"]],
+ ["Soto Madura","local-soto-madura","🍲","Madura","A hot soup with a yellow broth, meat and rice. People add lime juice and chili sauce.",["savory","a little spicy"],["warm","soft"],["beef or chicken","turmeric","lime","chili sauce"]],
+ ["Bebek Madura","local-bebek-madura","🍗","Madura","Fried duck with spicy chili paste (sambal) and rice. The skin is crispy and the meat is soft.",["spicy","savory"],["crispy","soft"],["duck","chili","shallot","rice"]],
+ ["Rawon","local-rawon","🍲","East Java","A black beef soup from East Java. The black color comes from keluak nuts. It is served with rice, bean sprouts and salted egg.",["savory","rich"],["warm","soft"],["beef","keluak nuts","bean sprouts","egg"]],
+ ["Rujak Cingur","local-rujak-cingur","🥗","Surabaya","A salad of vegetables, fruit and rice cake with a thick sauce of peanut, chili and shrimp paste. Boiled cow's snout (cingur) makes it chewy.",["sweet","spicy","salty"],["chewy","crunchy"],["vegetables","fruit","rice cake","peanut","shrimp paste"]],
+ ["Lontong Balap","local-lontong-balap","🍛","Surabaya","Rice cake with bean sprouts, fried tofu and lentho (fried cassava cake) in a savory sauce, with sweet soy sauce on top.",["savory","sweet"],["soft","crunchy"],["rice cake","bean sprouts","tofu","lentho","sweet soy sauce"]]];
+S.push({id:"local",title:"Local Dishes",render:function(){
+  return head("Materi","m","H. Local Dishes","Kenali makanan khas daerah dalam bahasa Inggris, lalu deskripsikan dengan kata rasa dan tekstur.")+
+  '<div class="split local"><div class="lgrid">'+LOCAL.map(function(l,i){return '<button class="lcard" type="button" data-i="'+i+'">'+pic(l[1],l[2])+'<b>'+l[0]+'</b><small>'+l[3]+'</small></button>'}).join("")+'</div><div class="lpanel" id="lp"></div></div>'},
+  init:function(){
+    function show(i){var l=LOCAL[i];
+      $$(".lcard").forEach(function(c,k){c.classList.toggle("on",k===i)});
+      var turn=l[0]+" is "+l[5][0]+(l[5][1]?" and "+l[5][1]:"")+". It is "+l[6][0]+".";
+      $("#lp").innerHTML='<h3>'+l[0]+'</h3><div><span class="pill o">'+l[3]+'</span></div><p>'+l[4]+'</p>'+
+        '<div><span class="lab">Taste</span>'+l[5].map(function(w){return '<span class="pill">'+w+'</span>'}).join("")+'</div>'+
+        '<div><span class="lab">Texture</span>'+l[6].map(function(w){return '<span class="pill">'+w+'</span>'}).join("")+'</div>'+
+        '<div><span class="lab">Ingredients</span>'+l[7].map(function(w){return '<span class="pill">'+w+'</span>'}).join("")+'</div>'+
+        '<div class="turn">Say it: '+turn+'</div><div class="ctl"><button class="btn" type="button" id="lsay">Dengarkan</button></div>';
+      $("#lsay").onclick=function(){say(l[4]+" "+turn)}}
+    $$(".lcard").forEach(function(c){c.onclick=function(){show(+c.dataset.i)}});
+    show(0)}});
+
+/* listening */
+var LISTEN=[
+ ["I want a hot cup of tea, please.","Tea","drink"],
+ ["I would like a slice of pizza for lunch.","Pizza","food"],
+ ["My favorite food is satay.","Satay","food"],
+ ["Please give me a bowl of noodles.","Noodle","food"],
+ ["I drink a glass of milk every morning.","Milk","drink"],
+ ["The croissant is my favorite breakfast.","Croissant","food"],
+ ["Let's eat sushi for dinner tonight.","Sushi","food"],
+ ["I like orange juice with my breakfast.","Juice","drink"],
+ ["She is eating a hamburger at the school canteen.","Hamburger","food"]];
+S.push({id:"listen",title:"Listening",render:function(){
+  return '<div class="head"><div class="row"><span class="tag l">Latihan</span><h2>Listening · Listen and choose</h2><span class="score" id="sc"></span></div><p>Dengarkan kalimatnya, lalu pilih gambar yang tepat. Bila tidak ada suara, tekan Tampilkan teks.</p></div><div class="lsn" id="ls"></div>'},
+  init:function(){
+    var qs,i,score,locked,showT=false;
+    function lookup(name,kind){var arr=kind==="food"?FOODS:DRINKS,files=kind==="food"?FOOD_FILES:DRINK_FILES;for(var k=0;k<arr.length;k++)if(arr[k][0]===name)return {name:name,f:files[k],e:arr[k][1]};return null}
+    function start(){qs=shuffle(LISTEN).slice(0,8);i=0;score=0;draw()}
+    function draw(){
+      if(i>=qs.length){var st=score>=8?3:score>=6?2:score>=4?1:0;
+        $("#ls").innerHTML='<div class="result" style="flex:1"><div class="stars">'+"★★★".slice(0,st)+'<span style="opacity:.25">'+"★★★".slice(st)+'</span></div><h3>Skor '+score+' / '+qs.length+'</h3><p>'+["Dengarkan lagi dan coba ulang.","Bagus, telingamu mulai terlatih.","Keren, hampir sempurna!","Luar biasa, pendengaranmu tajam!"][st]+'</p><button class="btn go" type="button" id="again">Main lagi</button></div>';
+        $("#sc").textContent="Selesai";$("#again").onclick=start;return}
+      var q=qs[i],c=lookup(q[1],q[2]),arr=q[2]==="food"?FOODS:DRINKS;
+      var others=shuffle(arr.map(function(a){return a[0]}).filter(function(n){return n!==q[1]})).slice(0,3);
+      var opts=shuffle([c].concat(others.map(function(n){return lookup(n,q[2])})));
+      $("#sc").textContent="Soal "+(i+1)+" / "+qs.length+" · Skor "+score;
+      $("#ls").innerHTML='<div class="lbar"><button class="play" type="button" id="pl">Putar suara</button><button class="btn alt" type="button" id="tt">'+(showT?"Sembunyikan teks":"Tampilkan teks")+'</button><div class="tr" id="tx">'+(showT?q[0]:"")+'</div></div><div class="lopts">'+opts.map(function(o){return '<button class="lo" type="button" data-n="'+o.name+'">'+pic(o.f,o.e)+'<b>'+o.name+'</b></button>'}).join("")+'</div><div class="msg" id="ms">'+(window.speechSynthesis?"":"Perangkat ini tidak mendukung suara. Gunakan Tampilkan teks.")+'</div>';
+      locked=false;
+      $("#pl").onclick=function(){say(q[0])};
+      $("#tt").onclick=function(){showT=!showT;$("#tx").textContent=showT?q[0]:"";$("#tt").textContent=showT?"Sembunyikan teks":"Tampilkan teks"};
+      $$(".lo").forEach(function(b){b.onclick=function(){if(locked)return;locked=true;
+        var ok=b.dataset.n===q[1];
+        if(ok){score++;b.classList.add("ok");$("#ms").textContent="Benar!";$("#ms").className="msg good"}
+        else{b.classList.add("bad");$$(".lo").forEach(function(x){if(x.dataset.n===q[1])x.classList.add("ok")});$("#ms").textContent="Jawaban yang benar: "+q[1];$("#ms").className="msg bad"}
+        $("#tx").textContent=q[0];
+        setTimeout(function(){i++;draw()},1600)}});
+      setTimeout(function(){say(q[0])},350)}
     start()}});
 
+/* writing */
+var TASTEW=["sweet","sour","spicy","salty","bitter","plain","tasty","delicious","savory"];
+var TEXW=["soft","chewy","cold","greasy","hard","warm","smooth","crunchy","crispy","creamy"];
+S.push({id:"write",title:"My Favorite Food",render:function(){
+  var bank=[["tasty","t"],["delicious","t"],["sweet","t"],["sour","t"],["spicy","t"],["salty","t"],["bitter","t"],["savory","t"],["soft","x"],["chewy","x"],["crunchy","x"],["smooth","x"],["creamy","x"],["hot","x"],["cold","x"],["rice","i"],["egg","i"],["chicken","i"],["noodles","i"],["cheese","i"],["vegetables","i"],["beef","i"]];
+  return '<div class="head"><div class="row"><span class="tag l">Latihan</span><h2>Writing · My Favorite Food</h2><span class="score" id="sc"></span></div><p>Tulis 3 sampai 5 kalimat tentang makanan favoritmu. Klik kata di kiri untuk menyisipkannya.</p></div>'+
+  '<div class="split wr"><div class="col"><h4>Kerangka kalimat</h4><ul class="frames"><li>My favorite food is ___.</li><li>It is ___ and ___.</li><li>It is made from ___.</li><li>I like it because ___.</li><li>I usually eat it for ___.</li></ul><h4>Kata bantu</h4><div class="wbank">'+bank.map(function(b){return '<button class="wchip '+b[1]+'" type="button" data-w="'+b[0]+'">'+b[0]+'</button>'}).join("")+'</div></div>'+
+  '<div class="col"><textarea id="wt" maxlength="700" placeholder="My favorite food is ..." aria-label="Tulisan tentang makanan favorit"></textarea><div class="ctl"><button class="btn" type="button" id="wsay">Dengarkan tulisanku</button><button class="btn alt" type="button" id="wcp">Salin teks</button><button class="btn alt" type="button" id="wcl">Hapus</button></div><div class="msg" id="wm"></div></div>'+
+  '<div class="col"><h4>Daftar cek</h4><div class="chk" id="ck"></div></div></div>'},
+  init:function(){
+    var ta=$("#wt"),clr=false;
+    try{ta.value=localStorage.getItem("gfgl-draft")||""}catch(e){}
+    function has(t,arr){var s=" "+t.toLowerCase().replace(/[^a-z' ]/g," ")+" ";return arr.some(function(w){return s.indexOf(" "+w+" ")>-1})}
+    function upd(){var t=ta.value,sn=t.split(/[.!?]+/).filter(function(x){return /\S/.test(x)}).length;
+      var ing=Object.keys(INGR).concat(["tofu","sugar","fish","vegetables","noodle","sauce"]);
+      var cs=[["Minimal 3 kalimat",sn>=3],["Memakai I like atau My favorite",/(i like|my favou?rite)/i.test(t)],["Memakai kata rasa (sweet, spicy, ...)",has(t,TASTEW)],["Memakai kata tekstur (soft, crunchy, ...)",has(t,TEXW)],["Menyebut satu bahan makanan",has(t,ing)]];
+      $("#ck").innerHTML=cs.map(function(c){return '<div class="'+(c[1]?"y":"")+'"><i>'+(c[1]?"✓":"")+'</i>'+c[0]+'</div>'}).join("");
+      $("#sc").textContent=cs.filter(function(c){return c[1]}).length+" / 5 syarat · "+sn+" kalimat";
+      try{localStorage.setItem("gfgl-draft",t)}catch(e){}}
+    ta.oninput=upd;
+    $$(".wchip").forEach(function(b){b.onclick=function(){var w=b.dataset.w,s=ta.selectionStart==null?ta.value.length:ta.selectionStart,e=ta.selectionEnd==null?s:ta.selectionEnd,v=ta.value,pre=v.slice(0,s),ins=(pre&&!/\s$/.test(pre)?" ":"")+w;
+      ta.value=pre+ins+v.slice(e);var p=pre.length+ins.length;ta.focus();try{ta.setSelectionRange(p,p)}catch(x){}upd()}});
+    $("#wsay").onclick=function(){if(ta.value)say(ta.value)};
+    $("#wcp").onclick=function(){var t=ta.value;if(!t){return}
+      var fb=function(){ta.focus();ta.select();$("#wm").textContent="Teks dipilih. Tekan Ctrl+C untuk menyalin.";$("#wm").className="msg"};
+      try{navigator.clipboard.writeText(t).then(function(){$("#wm").textContent="Teks tersalin.";$("#wm").className="msg good"},fb)}catch(e){fb()}};
+    $("#wcl").onclick=function(){if(!clr){clr=true;$("#wcl").textContent="Yakin hapus?";return}ta.value="";clr=false;$("#wcl").textContent="Hapus";upd()};
+    upd()}});
+
+/* ---------- teacher panel ---------- */
+var PIN="1234",SKEY="gfgl-scores",unlocked=false,tTab=0,confirmDel=false;
+function loadScores(){try{return JSON.parse(localStorage.getItem(SKEY)||"[]")}catch(e){return []}}
+function storeScores(a){try{localStorage.setItem(SKEY,JSON.stringify(a));return true}catch(e){return false}}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+function keyHtml(){
+  return '<h4>Activity 1 · Kata dan gambar</h4><div class="kgrid">'+MATCH.map(function(m){return '<span class="kitem">'+pic("a1-"+m[0],m[1],"kp")+m[0]+'</span>'}).join("")+'</div>'+
+  '<h4>Activity 2 · Lengkapi kalimat</h4><ul>'+FILL.map(function(f){return '<li>'+f[1]+' <b>'+f[2]+'</b></li>'}).join("")+'</ul>'+
+  '<h4>Activity 3 · Rasa benda (jawaban yang diterima)</h4><ul>'+T3.map(function(t){return '<li>'+t[1]+': <b>'+t[2].join(" / ")+'</b></li>'}).join("")+'</ul>'+
+  '<h4>Activity 4 · Pertanyaan cerita</h4><ul>'+STORYQ.map(function(q){return '<li>'+q[0]+' <b>'+q[1][q[2]]+'</b></li>'}).join("")+'</ul>'+
+  '<h4>Listening · Kalimat dan jawaban</h4><ul>'+LISTEN.map(function(l){return '<li>'+l[0]+' <b>'+l[1]+'</b></li>'}).join("")+'</ul>'+
+  '<h4>Food Ingredients · Bahan tiap hidangan</h4><ul>'+DISH.map(function(d){return '<li>'+d[0]+': <b>'+d[2].join(", ")+'</b></li>'}).join("")+'</ul>'+
+  '<h4>Writing · Kriteria penilaian</h4><ul><li>Minimal 3 kalimat</li><li>Memakai I like atau My favorite</li><li>Memakai kata rasa dan kata tekstur</li><li>Menyebut satu bahan makanan</li></ul>'+
+  '<h4>Kuis akhir</h4><p class="hint2">Soal dan pilihan jawaban diacak setiap kali main. Jawaban benar berwarna hijau setelah siswa memilih. Soal yang salah diulang sekali di akhir dan tidak menambah skor.</p>'}
+function scoreHtml(){
+  var a=loadScores();
+  if(!a.length)return '<p class="hint2">Belum ada skor tersimpan. Siswa dapat menyimpan skor di akhir kuis. Data hanya tersimpan di browser perangkat ini.</p>';
+  var sum=0;a.forEach(function(r){sum+=r.s/r.t*10});
+  return '<p class="hint2">'+a.length+' skor tersimpan · rata-rata '+(sum/a.length).toFixed(1)+' dari 10</p><table class="tbl"><thead><tr><th>Nama</th><th>Level</th><th>Skor</th><th>Waktu</th></tr></thead><tbody>'+a.map(function(r){return '<tr><td>'+esc(r.n)+'</td><td>'+esc(r.l||"-")+'</td><td>'+r.s+' / '+r.t+'</td><td>'+esc(r.d)+'</td></tr>'}).join("")+'</tbody></table>'+
+  '<div class="ctl" style="margin-top:10px"><button class="btn alt" id="del" type="button">'+(confirmDel?"Yakin hapus semua?":"Hapus semua skor")+'</button></div>'}
+function teacherDraw(){
+  var box=$("#tp");
+  if(!unlocked){
+    box.innerHTML='<p class="k">Panel guru</p><h3>Masukkan PIN</h3><div class="ctl"><input class="inp" id="pin" type="password" inputmode="numeric" maxlength="8" placeholder="PIN" aria-label="PIN guru"><button class="btn" id="pk" type="button">Buka</button><button class="btn alt" id="tc" type="button">Tutup</button></div><div class="msg bad" id="pm"></div>';
+    var go1=function(){if($("#pin").value===PIN){unlocked=true;teacherDraw()}else{$("#pm").textContent="PIN salah.";$("#pin").value=""}};
+    $("#pk").onclick=go1;$("#pin").onkeydown=function(e){if(e.key==="Enter")go1()};$("#tc").onclick=closeTeacher;$("#pin").focus();return}
+  box.innerHTML='<h3>Panel guru</h3><div class="tabs"><button class="tabb'+(tTab===0?' on':'')+'" type="button" data-t="0">Kunci jawaban</button><button class="tabb'+(tTab===1?' on':'')+'" type="button" data-t="1">Skor kuis</button></div>'+(tTab===0?keyHtml():scoreHtml())+'<div class="ctl" style="margin-top:12px"><button class="btn" id="tc" type="button">Tutup</button></div>';
+  $$(".tabb",box).forEach(function(b){b.onclick=function(){tTab=+b.dataset.t;confirmDel=false;teacherDraw()}});
+  $("#tc").onclick=closeTeacher;
+  var d=$("#del");if(d)d.onclick=function(){if(!confirmDel){confirmDel=true;teacherDraw();return}storeScores([]);confirmDel=false;teacherDraw()}}
+function openTeacher(){unlocked=false;tTab=0;confirmDel=false;$("#ovl2").hidden=false;teacherDraw()}
+function closeTeacher(){$("#ovl2").hidden=true;unlocked=false}
+
 /* ---------- shell ---------- */
+var IDS=["home","food","drink","taste","texture","ask","act1","act2","act3","act4","quiz"];
+S.forEach(function(x,i){if(!x.id)x.id=IDS[i]});
+var ORDER=["home","food","drink","taste","texture","quant","ingr","local","ask","listen","act1","act2","act3","act4","write","quiz"];
+S=ORDER.map(function(id){return S.filter(function(x){return x.id===id})[0]});
 var cur=0,visited={0:1},v=$("#view");
 function go(n){if(n<0||n>=S.length)return;cur=n;visited[n]=1;try{if(window.speechSynthesis)speechSynthesis.cancel()}catch(e){}
   v.innerHTML=S[n].render();if(S[n].init)S[n].init();
@@ -497,14 +886,20 @@ $("#bFs").onclick=function(){try{if(document.fullscreenElement){document.exitFul
 $("#bDev").onclick=function(){$("#ovl").hidden=false;$("#bClose").focus()};
 $("#bClose").onclick=function(){$("#ovl").hidden=true};
 $("#ovl").onclick=function(e){if(e.target===this)this.hidden=true};
+$("#bTeach").onclick=openTeacher;
+$("#ovl2").onclick=function(e){if(e.target===this)closeTeacher()};
 document.addEventListener("keydown",function(e){
-  if(e.key==="Escape")$("#ovl").hidden=true;
-  else if(!$("#ovl").hidden)return;
-  else if(e.key==="ArrowRight")go(cur+1);else if(e.key==="ArrowLeft")go(cur-1)});
+  var t=e.target&&e.target.tagName;
+  if(e.key==="Escape"){$("#ovl").hidden=true;if(!$("#ovl2").hidden)closeTeacher();return}
+  if(t==="INPUT"||t==="TEXTAREA"||!$("#ovl").hidden||!$("#ovl2").hidden)return;
+  if(e.key==="ArrowRight")go(cur+1);else if(e.key==="ArrowLeft")go(cur-1)});
+var rotOff=false;
+$("#rotx").onclick=function(){rotOff=true;$("#rot").hidden=true};
 
 /* 16:9 scaling */
 function fit(){var w=window.innerWidth,h=window.innerHeight,s=Math.min(w/1280,h/720),st=$("#stage");
-  st.style.transform="translate("+Math.round((w-1280*s)/2)+"px,"+Math.round((h-720*s)/2)+"px) scale("+s+")"}
+  st.style.transform="translate("+Math.round((w-1280*s)/2)+"px,"+Math.round((h-720*s)/2)+"px) scale("+s+")";
+  var r=$("#rot");if(r)r.hidden=rotOff||!(h>w&&w<700)}
 window.addEventListener("resize",fit);fit();
 go(0);
 })();
